@@ -1,0 +1,158 @@
+#
+# Copyright (C) 2013 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
+
+$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+
+LOCAL_PATH := device/nokia/x
+
+DEVICE_PACKAGE_OVERLAYS := device/nokia/x/overlay
+
+PRODUCT_LOCALES := en_US
+PRODUCT_LOCALES += hdpi
+PRODUCT_AAPT_CONFIG := normal hdpi
+PRODUCT_AAPT_PREF_CONFIG := hdpi
+
+PRODUCT_COPY_FILES := \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
+    frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
+    frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
+    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
+    packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
+
+#Bluetooth configuration files
+PRODUCT_COPY_FILES += \
+    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf \
+    system/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
+    system/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
+    system/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
+    system/bluetooth/data/iop_device_list.conf:system/etc/bluetooth/iop_device_list.conf \
+    system/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
+    system/bluetooth/data/network.conf:system/etc/bluetooth/network.conf
+
+# Media
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/media/media_profiles_7627a.xml:system/etc/media_profiles.xml \
+    $(LOCAL_PATH)/media/media_codecs_7627a.xml:system/etc/media_codecs.xml
+
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio.primary.msm7627a \
+    audio_policy.msm7627a \
+    audio.usb.default \
+    libaudioparameter \
+    libtinyalsa \
+    tinycap \
+    tinymix \
+    tinyplay
+
+# Display
+PRODUCT_PACKAGES += \
+    copybit.msm7627a \
+    gralloc.msm7627a \
+    hwcomposer.msm7627a \
+    libc2dcolorconvert
+    liboverlay \
+    libgenlock \
+    libqdutils \
+    libqdMetaData
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    e2fsck \
+    resize2fs \
+    setup_fs
+
+# GPS
+PRODUCT_PACKAGES += \
+    gps.default \
+    libgps.utils \
+    libloc_adapter \
+    libloc_eng
+    libloc_api-rpc-qc
+
+# Misc
+PRODUCT_PACKAGES += \
+    lights.msm7627a \
+    power.qcom
+
+# OMX
+PRODUCT_PACKAGES += \
+    libdivxdrmdecrypt \
+    libmm-omxcore \
+    libOmxCore \
+    libstagefrighthw \
+    libOmxVdec \
+    libOmxVenc \
+    libOmxVidEnc \
+    libOmxAacEnc \
+    libOmxAmrEnc \
+    libOmxEvrcEnc \
+    libOmxQcelp13Enc
+    
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.msm7627a \
+    init.qcom.unicorn-dpi.sh \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.class_core.sh \
+    init.qcom.class_main.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    ueventd.qcom.rc \
+    init.target.rc \
+    init.qcom.ril.path.sh \
+    
+
+# Init scripts
+PRODUCT_PACKAGES += \
+    init.qcom.post_boot.sh \
+    init.qcom.bt.sh \
+    init.ath3k.bt.sh \
+    init.qcom.efs.sync.sh \
+    init.qcom.coex.sh \
+    init.qcom.fm.sh \
+    init.qcom.sdio.sh \
+    init.qcom.wifi.sh \
+    init.qcom.post_fs.sh \
+    init.qcom.composition_type.sh \
+    init.target.8x25.sh \
+    init.qcom.thermald_conf.sh
+    thermald-8x25-msm1-pmic_therm.conf \
+    thermald-8x25-msm2-msm_therm.conf \
+    thermald-8x25-msm2-pmic_therm.conf \
+    vold.fstab
+
+# QC Perf
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.extension_library=/system/lib/libqc-opt.so
+
+$(call inherit-product, vendor/nokia/x/x-vendor.mk)
