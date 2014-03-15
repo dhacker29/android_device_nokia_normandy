@@ -39,8 +39,21 @@ service ril-qmi /system/bin/sh /init.qcom.ril.path.sh
     user root
     oneshot
 
+service nvbk_storage /system/bin/nvbk_storage
+    class late_start
+    user root
+    disabled
+
+on property:ro.boot.emmc=true
+    start nvbk_storage
+
 on early-init
-    mkdir /storage/emmc 0000 system system
+#    mkdir /storage/emmc 0000 system system
+
+service ft_fwupdate /system/bin/sh /system/etc/init.ft.fwupdate.sh
+    class late_start
+    user root
+    oneshot
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
     class late_start
@@ -56,6 +69,12 @@ service version-set /system/bin/sh /system/etc/init.target.8x25.sh
     disabled
     oneshot
 
+service sd_hot_plug /system/bin/sh /system/etc/init.qcom.sd_hot_plug.sh
+    user root
+    critical
+    disabled
+    oneshot
+
 service wlan_tool /system/bin/wlan_tool
     class late_start
     user root
@@ -65,6 +84,7 @@ service wlan_tool /system/bin/wlan_tool
 on boot
    start qcamerasvr
    start gpu_dcvsd
+   start psensorCal
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
@@ -98,39 +118,17 @@ service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
     group system
     disabled
 
+#shenzhiyong@byd.com add for psensor calibration
+service psensorCal /system/bin/psensorCal
+    class late_start
+    user root
+    oneshot
+
+on emmc-fs
+    # Failure to mount any partition in fstab file results in failure to launch late-start class.
+    mount_all fstab.qcom
+
 on fs
-    mount_all fstab.msm7627a
-
-    # Keeping following partitions outside fstab file. As user may not have
-    # these partition flashed on the device. Failure to mount any partition in fstab file
-    # results in failure to launch late-start class.
-
-    wait /dev/block/platform/msm_sdcc.3/by-num/p15
-    mount ext4 /dev/block/platform/msm_sdcc.3/by-num/p15 /cache nosuid nodev barrier=1
-
-    wait /dev/block/platform/msm_sdcc.3/by-num/p14
-    mount ext4 /dev/block/platform/msm_sdcc.3/by-num/p14 /persist nosuid nodev barrier=1
-
-service griffon /system/xbin/gps-start.sh
-   class main
-   socket gpsd39 dgram 0660 gps system inet
-   socket gpsd16 dgram 0660 gps system inet
-   user gps
-   group gps system qcom_diag diag log inet
-   oneshot
-
-on boot
-   #gpio7 on 8x25
-   chown gps system /sys/class/gpio/gpio7/value
-   chown gps system /sys/class/gpio/gpio7/direction
-   chmod 0644 /sys/class/gpio/gpio7/value
-   chmod 0644 /sys/class/gpio/gpio7/direction
-   #gpio49 on 8x25Q boards
-   chown gps system /sys/class/gpio/gpio49/value
-   chown gps system /sys/class/gpio/gpio49/direction
-   chmod 0644 /sys/class/gpio/gpio49/value
-   chmod 0644 /sys/class/gpio/gpio49/direction
-
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system
@@ -139,3 +137,9 @@ on boot
     mount yaffs2 mtd@persist /persist nosuid nodev
     mount yaffs2 mtd@cache /cache nosuid nodev
     mount yaffs2 mtd@persist /persist nosuid nodev
+
+# 2013-09-11  Li Tao  fix Normandy_P003603, touch pannel testAllFilesInSysAreNotWritable
+on property:persist.radio.tp.upgrade=1
+    chmod 766 /sys/bus/i2c/devices/1-0038/fwupdate
+on property:persist.radio.tp.upgrade=0
+    chmod 664 /sys/bus/i2c/devices/1-0038/fwupdate

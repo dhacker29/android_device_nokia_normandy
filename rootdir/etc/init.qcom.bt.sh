@@ -108,14 +108,17 @@ config_bt ()
         setprop ro.qualcomm.bluetooth.pbap true
         setprop ro.qualcomm.bluetooth.ftp true
         setprop ro.qualcomm.bluetooth.nap true
-        setprop ro.qualcomm.bluetooth.sap true
+        setprop ro.qualcomm.bluetooth.sap false
         setprop ro.qualcomm.bluetooth.dun true
         case $btsoc in
           "ath3k")
               setprop ro.qualcomm.bluetooth.map false
               ;;
           *)
-              setprop ro.qualcomm.bluetooth.map true
+              //20130910 hanliwei modify for Normandy_C000656 BQQ
+              #setprop ro.qualcomm.bluetooth.map true
+              setprop ro.qualcomm.bluetooth.map false
+              //end modify
               ;;
         esac
         ;;

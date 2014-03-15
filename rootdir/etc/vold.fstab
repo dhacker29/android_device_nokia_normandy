@@ -26,5 +26,5 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 dev_mount sdcard /storage/sdcard0 auto /devices/platform/msm_sdcc.1/mmc_host
-
-dev_mount emmc /storage/emmc 19 /devices/platform/msm_sdcc.3/mmc_host/mmc0
+dev_mount emmc	/storage/sdcard1  21  /devices/platform/msm_sdcc.3/mmc_host/mmc0
+#dev_mount emmc /storage/emmc 19 /devices/platform/msm_sdcc.3/mmc_host/mmc0

@@ -45,7 +45,7 @@ case $soc_id in
         modemid_2=${buildid:$offset_2:$length}
         modemid_3=${buildid:$offset_3:$length}
         if [ "$modemid_1" = "$is_unicorn" ] && [ "$modemid_2" -gt "$dsp_lpa_enabled" -o "$modemid_3" = "S" ]; then
-           setprop lpa.decode true
+           setprop lpa.decode false
            setprop audio.decoder_override_check true
            setprop use.non-omx.mp3.decoder true
            setprop use.non-omx.aac.decoder true
@@ -70,7 +70,7 @@ case $soc_id in
         modemid_1=${buildid:$offset_1:$length}
         modemid_2=${buildid:$offset_2:$length}
         if [ "$modemid_1" = "$is_unicorn" ] && [ "$modemid_2" -gt "$dsp_lpa_enabled" ]; then
-           setprop lpa.decode true
+           setprop lpa.decode false
            setprop audio.decoder_override_check true
            setprop use.non-omx.mp3.decoder true
            setprop use.non-omx.aac.decoder true
@@ -86,7 +86,7 @@ case $soc_id in
         comp_8x25=`getprop debug.composition.8x25.type`
         setprop debug.composition.type $comp_8x25
         setprop ro.hw_plat 8x25
-        setprop lpa.decode true
+        setprop lpa.decode false
         setprop audio.decoder_override_check true
         setprop use.non-omx.mp3.decoder true
         setprop use.non-omx.aac.decoder true

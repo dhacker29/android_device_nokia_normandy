@@ -59,6 +59,27 @@ start_battery_monitor()
 	start battery_monitor
 }
 
+#
+# set the ro.hw_platform property for identify this board
+#
+setprop ro.hw_platform "`cat /sys/devices/system/soc/soc0/hw_platform`"
+
+#
+# set the ro.hw_version property for identify the verison of this board
+#
+hw_version=`cat /sys/devices/system/soc/soc0/platform_version`
+mmc_type=`cat /sys/class/mmc_host/mmc0/mmc0:0001/name`
+hw_version_ma=$(($hw_version/65536))
+hw_version_mi=$(($hw_version-hw_version_ma*65536))
+
+# Fix hw_version_mi by mmc_type
+# The platform with "XINYH" flash is version 3.1
+if [ $hw_version_mi -eq 0 -a $mmc_type == XINYH ];then
+hw_version_mi=1
+fi
+
+setprop ro.hw_version ${hw_version_ma}.${hw_version_mi}
+
 baseband=`getprop ro.baseband`
 
 #

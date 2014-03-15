@@ -17,8 +17,8 @@ ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 keyguard.no_require_sim=1
 debug.sf.hw=1
-debug.composition.7x27A.type=mdp
-debug.composition.7x25A.type=mdp
+debug.composition.7x27A.type=dyn
+debug.composition.7x25A.type=dyn
 debug.composition.8x25.type=dyn
 dalvik.vm.heapsize=24m
 persist.gralloc.cp.level3=1
@@ -143,7 +143,7 @@ ro.fm.mulinst.recording.support=false
 #
 # system props for SD card emulation of emmc partition
 #
-ro.emmc.sdcard.partition=18
+ro.emmc.sdcard.partition=20
 
 #
 # system property to enforce Phone Mode view
@@ -152,7 +152,7 @@ ro.screen.layout=normal
 #
 #System prop for setting the pixel format
 #
-ro.staticwallpaper.pixelformat=RGB_565
+#ro.staticwallpaper.pixelformat=RGB_565
 
 #
 #System prop for disabling the meta data mode for encoder
@@ -191,22 +191,51 @@ dev.pm.dyn_sample_period=700000
 # System prop for enabling the cdrom feature
 #
 persist.service.cdrom.enable=1
+
+#for enable poweroff charging feature
+persist.pwroffcharging.enable=1
+
+#enable read network preference from NV 10
+persist.radio.mode_pref_nv10=1
+
+#
+#  System prop for mapping to TTY Device for CSVT
+#
+hw.tty.vtdevice=/dev/smd11
+
+# Add 20120823 TS-FMC-V2 start
+#
+# System prop for enabling the fmc feature
+#
+ro.config.cwenable=1
+
+#
+# System prop for enabling the fmc v2.0 feature
+#
+ro.config.fmcv2support=1
+# Add 20120823 TS-FMC-V2 end
+
+
+# set default mtu to 1380
+persist.data_netmgrd_mtu=1380
 #
 # System prop for enabling forced sound in camera start/stop tones
 #
-ro.camera.sound.forced=1
+# ro.camera.sound.forced=1
+# System prop for disabling forced sound in camera start/stop tones
+ro.camera.sound.forced=0
+
 #
 # Snapdragon value add features
 #
-ro.qc.sdk.camera.facialproc=false
+ro.qc.sdk.camera.facialproc=true
 ro.qc.sdk.gestures.camera=false
 #
 # Enable swaprect feature
 #
 debug.sf.swaprect=1
+#jiwei add for logkit profile
+persist.sys.logkit.ctrlcode=0
 
-#
-#snapdragon value add features
-#
-ro.qc.sdk.camera.facialproc=false
-ro.qc.sdk.gestures.camera=false
+#yanguangsheng add for MVNO
+ro.mvno.enabled=1

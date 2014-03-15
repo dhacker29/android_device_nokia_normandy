@@ -55,6 +55,11 @@ PRODUCT_COPY_FILES += \
     system/bluetooth/data/input.conf:system/etc/bluetooth/input.conf \
     system/bluetooth/data/network.conf:system/etc/bluetooth/network.conf
 
+# Config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/audio_policy.conf:system/etc/audio_policy.conf \
+    $(LOCAL_PATH)/config/gps.conf:system/etc/gps.conf
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/media/media_profiles_7627a.xml:system/etc/media_profiles.xml \
@@ -120,6 +125,8 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.msm7627a \
+    fstab.qcom \
+    init.block_tuning.sh \
     init.qcom.unicorn-dpi.sh \
     init.qcom.rc \
     init.qcom.sh \
@@ -145,7 +152,9 @@ PRODUCT_PACKAGES += \
     init.qcom.post_fs.sh \
     init.qcom.composition_type.sh \
     init.target.8x25.sh \
-    init.qcom.thermald_conf.sh
+    init.qcom.thermald_conf.sh \
+    init.ft.fwupdate.sh \
+    init.qcom.sd_hot_plug.sh \
     thermald-8x25-msm1-pmic_therm.conf \
     thermald-8x25-msm2-msm_therm.conf \
     thermald-8x25-msm2-pmic_therm.conf \
