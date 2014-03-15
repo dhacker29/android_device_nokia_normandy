@@ -58,6 +58,7 @@ lib/libcneqmiutils.so
 lib/libcneutils.so
 lib/libconfigdb.so
 lib/libdiag.so
+lib/libdivxdrmdecrypt.so
 lib/libDivxDrm.so
 lib/libdsi_netctrl.so
 lib/libdsucsd.so
@@ -83,9 +84,11 @@ lib/libnetmgr.so
 lib/libnv.so
 lib/liboem_rapi.so
 lib/libOmxAacDec.so
+lib/libOmxAacEnc.so
 lib/libOmxAc3HwDec.so
 lib/libOmxAdpcmDec.so
 lib/libOmxAmrDec.so
+lib/libOmxAmrEnc.so
 lib/libOmxAmrRtpDec.so
 lib/libOmxAmrwbDec.so
 lib/libOmxEvrcDec.so
@@ -97,8 +100,10 @@ lib/libOmxMp3Dec.so
 lib/libOmxMpeg4Dec.so
 lib/libOmxOn2Dec.so
 lib/libOmxQcelp13Dec.so
+lib/libOmxQcelp13Enc.so
 lib/libOmxQcelpHwDec.so
 lib/libOmxrv9Dec.so
+lib/libOmxVidEnc.so
 lib/libOmxVp8Dec.so
 lib/libOmxWmaDec.so
 lib/libOmxWmvDec.so
@@ -117,6 +122,7 @@ lib/libril-qc-1.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libthermalclient.so
+lib/libtscamera-ext.so
 lib/libwmsts.so
 lib/libwms.so
 
