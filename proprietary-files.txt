@@ -32,7 +32,10 @@ etc/firmware/ath6k/AR6003/hw2.1.1/softmac
 etc/firmware/ath6k/AR6003/hw2.1.1/utf.bin
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
+etc/AudioFilter.csv
 etc/loc_parameter.ini
+etc/OperatorPolicy.xml
+etc/UserPolicy.xml
 
 # Framework
 framework/qcnvitems.jar
@@ -47,6 +50,8 @@ lib/hw/sensors.msm8625.so:lib/hw/sensors.7x27a.so
 lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libaudioeq.so
+lib/libauth.so
+lib/libcm.so
 lib/libcneapiclient.so
 lib/libcnefeatureconfig.so
 lib/libcneqmiutils.so
@@ -58,6 +63,7 @@ lib/libdsi_netctrl.so
 lib/libdsucsd.so
 lib/libdsutils.so
 lib/libextRil.so
+lib/libgemini.so
 lib/libgps.so
 lib/libI420colorconvert.so
 lib/libidl.so
@@ -74,6 +80,8 @@ lib/libmmjpeg.so
 lib/libmmosal.so
 lib/libmmparser.so
 lib/libnetmgr.so
+lib/libnv.so
+lib/liboem_rapi.so
 lib/libOmxAacDec.so
 lib/libOmxAc3HwDec.so
 lib/libOmxAdpcmDec.so
@@ -94,6 +102,7 @@ lib/libOmxrv9Dec.so
 lib/libOmxVp8Dec.so
 lib/libOmxWmaDec.so
 lib/libOmxWmvDec.so
+lib/liboncrpc.so
 lib/libqcci_legacy.so
 lib/libqcom_omx.so
 lib/libqc-opt.so
@@ -103,10 +112,13 @@ lib/libqmi.so
 lib/libqmi_client_qmux.so
 lib/libqmi_csvt_srvc.so
 lib/libqmiservices.so
+lib/libqueue.so
 lib/libril-qc-1.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libthermalclient.so
+lib/libwmsts.so
+lib/libwms.so
 
 # DRM
 lib/libWVphoneAPI.so

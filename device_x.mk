@@ -27,7 +27,7 @@ PRODUCT_LOCALES += hdpi
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
-PRODUCT_COPY_FILES := \
+PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
@@ -45,9 +45,8 @@ PRODUCT_COPY_FILES := \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml \
 
-#Bluetooth configuration files
+# Bluetooth configuration files
 PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf \
     system/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
     system/bluetooth/data/auto_pairing.conf:system/etc/bluetooth/auto_pairing.conf \
     system/bluetooth/data/blacklist.conf:system/etc/bluetooth/blacklist.conf \
@@ -68,8 +67,8 @@ PRODUCT_COPY_FILES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio.primary.msm7627a \
-    audio_policy.msm7627a \
+    audio.primary.msm7x27a \
+    audio_policy.msm7x27a \
     audio.usb.default \
     libaudioparameter \
     libtinyalsa \
@@ -79,11 +78,13 @@ PRODUCT_PACKAGES += \
 
 # Display
 PRODUCT_PACKAGES += \
-    copybit.msm7627a \
-    gralloc.msm7627a \
-    hwcomposer.msm7627a \
-    libc2dcolorconvert
+    copybit.msm7x27a \
+    gralloc.msm7x27a \
+    hwcomposer.msm7x27a \
+    libc2dcolorconvert \
     liboverlay \
+    libmemalloc \
+    libtilerenderer \
     libgenlock \
     libqdutils \
     libqdMetaData
@@ -100,11 +101,14 @@ PRODUCT_PACKAGES += \
     gps.default \
     libgps.utils \
     libloc_adapter \
-    libloc_eng
+    libloc_eng \
     libloc_api-rpc-qc
 
-# Lights
-PRODUCT_PACKAGES += lights.msm7627a
+# Misc
+PRODUCT_PACKAGES += \
+    charger \
+    charger_res_images \
+    lights.msm7x27a
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -122,7 +126,6 @@ PRODUCT_PACKAGES += \
     
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.msm7627a \
     fstab.qcom \
     init.block_tuning.sh \
     init.qcom.unicorn-dpi.sh \
@@ -135,7 +138,6 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.target.rc \
     init.qcom.ril.path.sh \
-    
 
 # Init scripts
 PRODUCT_PACKAGES += \
