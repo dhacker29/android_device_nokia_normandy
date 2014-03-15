@@ -103,10 +103,8 @@ PRODUCT_PACKAGES += \
     libloc_eng
     libloc_api-rpc-qc
 
-# Misc
-PRODUCT_PACKAGES += \
-    lights.msm7627a \
-    power.qcom
+# Lights
+PRODUCT_PACKAGES += lights.msm7627a
 
 # OMX
 PRODUCT_PACKAGES += \
