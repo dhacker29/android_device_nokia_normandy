@@ -16,21 +16,21 @@
 
 #
 # This file is the build configuration for a full Android
-# build for x hardware. This cleanly combines a set of
+# build for normandy hardware. This cleanly combines a set of
 # device-specific aspects (drivers) with a device-agnostic
 # product configuration (apps). Except for a few implementation
 # details, it only fundamentally contains two inherit-product
-# lines, full and x, hence its name.
+# lines, full and normandy, hence its name.
 #
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from xt1058 device
-$(call inherit-product, device/nokia/x/device_x.mk)
+$(call inherit-product, device/nokia/normandy/device_normandy.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := x
-PRODUCT_NAME := full_x
+PRODUCT_DEVICE := normandy
+PRODUCT_NAME := full_normandy
 PRODUCT_BRAND := Nokia
 PRODUCT_MODEL := Nokia_X
 PRODUCT_MANUFACTURER := Nokia

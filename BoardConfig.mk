@@ -22,9 +22,9 @@
 #
 
 # inherit from the proprietary version
--include vendor/nokia/x/BoardConfigVendor.mk
+-include vendor/nokia/normandy/BoardConfigVendor.mk
 
-TARGET_SPECIFIC_HEADER_PATH := device/nokia/x/include
+TARGET_SPECIFIC_HEADER_PATH := device/nokia/normandy/include
 
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
@@ -62,8 +62,8 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno203
 BOARD_USES_ADRENO_200 := true
 
 # Inline kernel building
-TARGET_KERNEL_SOURCE := kernel/nokia/x
-TARGET_KERNEL_CONFIG := nokiax_defconfig
+TARGET_KERNEL_SOURCE := kernel/nokia/normandy
+TARGET_KERNEL_CONFIG := cyanogenmod_normandy_defconfig
 
 # Kernel
 BOARD_KERNEL_BASE    := 0x00200000
@@ -85,7 +85,7 @@ TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1 vmalloc=200M
 ARCH_ARM_HAVE_TLS_REGISTER := true
-BOARD_EGL_CFG := device/nokia/x/config/egl.cfg
+BOARD_EGL_CFG := device/nokia/normandy/config/egl.cfg
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x00A00000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x00A00000
@@ -127,8 +127,8 @@ HOSTAPD_VERSION := VER_0_8_X
 WIFI_CFG80211_DRIVER_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
 WIFI_CFG80211_DRIVER_MODULE_NAME := "cfg80211"
 WIFI_CFG80211_DRIVER_MODULE_ARG  := ""
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
-WIFI_DRIVER_MODULE_NAME := "wlan"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
+WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
 WIFI_DRIVER_MODULE_ARG := ""
 WIFI_TEST_INTERFACE     := "sta"
 WIFI_DRIVER_FW_PATH_STA := "sta"

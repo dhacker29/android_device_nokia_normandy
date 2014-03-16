@@ -10,9 +10,9 @@ TARGET_SCREEN_HEIGHT := 800
 
 # Release name
 PRODUCT_RELEASE_NAME := Nokia X 
-PRODUCT_NAME := cm_x
+PRODUCT_NAME := cm_normandy
 
-$(call inherit-product, device/nokia/x/full_x.mk)
+$(call inherit-product, device/nokia/normandy/full_normandy.mk)
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_BRAND=Nokia \

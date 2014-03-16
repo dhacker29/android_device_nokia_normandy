@@ -18,9 +18,9 @@ $(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-LOCAL_PATH := device/nokia/x
+LOCAL_PATH := device/nokia/normandy
 
-DEVICE_PACKAGE_OVERLAYS := device/nokia/x/overlay
+DEVICE_PACKAGE_OVERLAYS := device/nokia/normandy/overlay
 
 PRODUCT_LOCALES := en_US
 PRODUCT_LOCALES += hdpi
@@ -164,4 +164,4 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
 
-$(call inherit-product, vendor/nokia/x/x-vendor.mk)
+$(call inherit-product, vendor/nokia/normandy/normandy-vendor.mk)

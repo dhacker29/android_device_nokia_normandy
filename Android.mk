@@ -19,7 +19,7 @@
 # to only building on ARM if they include assembly. Individual makefiles
 # are responsible for having their own logic, for fine-grained control.
 
-ifeq ($(TARGET_DEVICE),x)
+ifeq ($(TARGET_DEVICE),normandy)
 
 LOCAL_PATH := $(call my-dir)
 

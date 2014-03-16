@@ -1,5 +1,5 @@
 #
-# system.prop for surf
+# system.prop for normandy
 #
 
 rild.libpath=/system/lib/libril-qc-1.so

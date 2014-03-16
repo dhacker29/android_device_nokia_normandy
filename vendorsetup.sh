@@ -1,1 +1,1 @@
-add_lunch_combo cm_x-eng
+add_lunch_combo cm_normandy-eng
