@@ -65,15 +65,6 @@ BOARD_USES_ADRENO_200 := true
 TARGET_KERNEL_SOURCE := kernel/nokia/x
 TARGET_KERNEL_CONFIG := nokiax_defconfig
 
-KERNEL_WIFI_MODULES:
-	$(MAKE) -C device/nokia/x/backports-3.13.2-1 defconfig-ath6kl
-	export CROSS_COMPILE=$(ARM_EABI_TOOLCHAIN)/arm-eabi-; $(MAKE) -C device/nokia/x/backports-3.13.2-1 KLIB=$(KERNEL_SRC) KLIB_BUILD=$(KERNEL_OUT) ARCH=$(TARGET_ARCH) $(ARM_CROSS_COMPILE)
-	cp `find device/nokia/x/backports-3.13.2-1 -name *.ko` $(KERNEL_MODULES_OUT)/
-	arm-eabi-strip --strip-debug `find $(KERNEL_MODULES_OUT) -name *.ko`
-	$(MAKE) -C device/nokia/x/backports-3.13.2-1 clean
-
-TARGET_KERNEL_MODULES := KERNEL_WIFI_MODULES
-
 # Kernel
 BOARD_KERNEL_BASE    := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -136,8 +127,8 @@ HOSTAPD_VERSION := VER_0_8_X
 WIFI_CFG80211_DRIVER_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
 WIFI_CFG80211_DRIVER_MODULE_NAME := "cfg80211"
 WIFI_CFG80211_DRIVER_MODULE_ARG  := ""
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
-WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_DRIVER_MODULE_ARG := ""
 WIFI_TEST_INTERFACE     := "sta"
 WIFI_DRIVER_FW_PATH_STA := "sta"
