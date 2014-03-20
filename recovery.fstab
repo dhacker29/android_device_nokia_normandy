@@ -25,15 +25,15 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# mount point	fstype		device			[device2]		[length=]
+# mount point    fstype      device                   [device2]
 
-
-/boot		emmc		/dev/block/platform/msm_sdcc.3/by-num/p8
-/cache		ext4		/dev/block/platform/msm_sdcc.3/by-num/p15
-/data		ext4		/dev/block/platform/msm_sdcc.3/by-num/p13	length=-16384
-/misc		emmc		/dev/block/platform/msm_sdcc.3/by-num/p17
-/recovery	emmc		/dev/block/platform/msm_sdcc.3/by-num/p16
-/sdcard		vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1
-/system		ext4		/dev/block/platform/msm_sdcc.3/by-num/p12
-/sys_boot	vfat		/dev/block/platform/msm_sdcc.3/by-num/p3
-/FOTA		emmc		/dev/block/platform/msm_sdcc.3/by-num/p18
+/boot            emmc        /dev/block/mmcblk0p17
+/cache           ext4        /dev/block/mmcblk0p19
+/data            ext4        /dev/block/mmcblk0p22    length=-16384
+/recovery        emmc        /dev/block/mmcblk0p14
+/misc            emmc        /dev/block/mmcblk0p11
+/sdcard          vfat        /dev/block/mmcblk1p1     /dev/block/mmcblk1
+/system          ext4        /dev/block/mmcblk0p18
+/sys_boot        vfat        /dev/block/mmcblk0p3
+/FOTA            emmc        /dev/block/mmcblk0p20
+/sdcard1         vfat        /dev/block/mmcblk0p21
