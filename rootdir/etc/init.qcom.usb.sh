@@ -105,7 +105,7 @@ case "$usb_config" in
                     ;;
                 esac
             ;;
-            "msm7627a" | "msm8625")
+            "msm7627a" | "msm7x27a" | "msm8625")
                 setprop persist.sys.usb.config diag,adb #zxh modify for Normandy_C000564
             ;;
             * )

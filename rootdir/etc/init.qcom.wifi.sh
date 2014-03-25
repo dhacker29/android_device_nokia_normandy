@@ -194,7 +194,7 @@ case "$target" in
     msm8660*)
     exit 0
     ;;
-    msm7627a*)
+    msm7627a* | msm7x27a*)
         wlanchip=`cat /persist/wlan_chip_id`
         echo "The WLAN Chip ID is $wlanchip"
         case "$wlanchip" in

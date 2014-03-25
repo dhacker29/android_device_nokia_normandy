@@ -138,6 +138,7 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.target.rc \
     init.qcom.ril.path.sh \
+    rmt_storage_recovery
 
 # Init scripts
 PRODUCT_PACKAGES += \

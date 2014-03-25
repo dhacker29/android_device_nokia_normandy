@@ -29,7 +29,7 @@
 target=`getprop ro.board.platform`
 case "$target" in
     "msm7201a_ffa" | "msm7201a_surf" | "msm7627_ffa" | "msm7627_6x" | "msm7627a"  | "msm7627_surf" | \
-    "qsd8250_surf" | "qsd8250_ffa" | "msm7630_surf" | "msm7630_1x" | "msm7630_fusion" | "qsd8650a_st1x")
+    "qsd8250_surf" | "qsd8250_ffa" | "msm7630_surf" | "msm7630_1x" | "msm7630_fusion" | "qsd8650a_st1x" | "msm7x27a")
         echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
         echo 90 > /sys/devices/system/cpu/cpufreq/ondemand/up_threshold
         ;;
@@ -53,7 +53,7 @@ case "$target" in
         echo 245760 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
         ;;
 
-     "msm7627a")
+     "msm7627a" | "msm7x27a")
         # start with default minimum for this family.
         echo 245760 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq;
         available_frequencies=`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`
@@ -224,14 +224,14 @@ case "$target" in
     "msm8960" | "msm8660" | "msm7630_surf")
         echo 10 > /sys/devices/platform/msm_sdcc.3/idle_timeout
         ;;
-    "msm7627a")
+    "msm7627a" | "msm7x27a")
         echo 10 > /sys/devices/platform/msm_sdcc.1/idle_timeout
         ;;
 esac
 
 # Enable Power modes and set the CPU Freq Sampling rates
 case "$target" in
-     "msm7627a")
+     "msm7627a" | "msm7x27a")
         start qosmgrd
 	echo 1 > /sys/module/pm2/modes/cpu0/standalone_power_collapse/idle_enabled
 	echo 1 > /sys/module/pm2/modes/cpu1/standalone_power_collapse/idle_enabled
@@ -251,12 +251,12 @@ esac
 
 # Post-setup services
 case "$target" in
-    "msm8660" | "msm8960" | "msm7627a")
+    "msm8660" | "msm8960" | "msm7627a" | "msm7x27a")
         start mpdecision
     ;;
 esac
 case "$target" in
-    "msm7627a")
+    "msm7627a" | "msm7x27a")
         soc_id=`cat /sys/devices/system/soc/soc0/id`
         ver=`cat /sys/devices/system/soc/soc0/version`
         case "$soc_id" in
@@ -277,7 +277,7 @@ esac
 
 # Change adj level and min_free_kbytes setting for lowmemory killer to kick in
 case "$target" in
-     "msm7627a")
+     "msm7627a" | "msm7x27a")
 	echo 0,1,2,4,6,7 > /sys/module/lowmemorykiller/parameters/adj
 	echo 4075,5437,6799,8847,11520,15360 > /sys/module/lowmemorykiller/parameters/minfree
 	echo 5120 > /proc/sys/vm/min_free_kbytes

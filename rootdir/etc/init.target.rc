@@ -30,9 +30,21 @@ on early-boot
     start comp-set
     start version-set
 
+on init
+    mkdir /variant 0555 system system
+    mkdir /preload 0555 system system
+
+    # Filesystem debugfs
+    mkdir /mnt/debugfs 0700 root system
+    mount debugfs debugfs /mnt/debugfs gid=1000
 
 on post-fs
     exec /system/bin/sh /system/etc/init.qcom.thermald_conf.sh
+
+    #Borqs Created tmp directory for CSVT LoopBack Call
+    mkdir /data/tmp 0771 radio radio
+
+    chmod 2770 /data/radio
 
 service ril-qmi /system/bin/sh /init.qcom.ril.path.sh
     class main
@@ -85,6 +97,62 @@ on boot
    start qcamerasvr
    start gpu_dcvsd
    start psensorCal
+
+    ###CSVT #######
+    chmod 0777 /dev/smd11
+
+    chown system system /sys/power/autosleep
+    chown system system /sys/bus/platform/devices/fastboot/fastboot
+    chown system system /sys/bus/platform/devices/fastboot/resume
+    chown system system /sys/class/compass/akm8975/delay_acc
+    chown system system /sys/class/compass/akm8975/delay_mag
+    chown system system /sys/class/compass/akm8975/delay_ori
+    chown system system /sys/class/compass/akm8975/enable_acc
+    chown system system /sys/class/compass/akm8975/enable_mag
+    chown system system /sys/class/compass/akm8975/enable_ori
+    chown system system /sys/class/compass/akm8975/accel
+    chown input system /sys/bus/i2c/devices/1-0039/enable_als_sensor
+    chown input system /sys/bus/i2c/devices/1-0039/enable_ps_sensor
+    chown input system /sys/bus/i2c/devices/1-0039/ps_sensor_thld
+    chown input system /sys/bus/i2c/devices/1-0039/als_poll_delay
+    chmod 0664 /sys/bus/i2c/devices/1-0039/enable_als_sensor
+    chmod 0664 /sys/bus/i2c/devices/1-0039/enable_ps_sensor
+    chmod 0664 /sys/bus/i2c/devices/1-0039/ps_sensor_thld
+    chmod 0664 /sys/bus/i2c/devices/1-0039/als_poll_delay
+    chown input  system /sys/devices/i2c-1/1-000f/enable
+    chmod 0664 /sys/devices/i2c-1/1-000f/enable
+    # Permissions for Sensors
+    chmod 0666  /dev/ltr559_ls
+    chmod 0666  /dev/ltr559_ps
+    #modify gsensor file node mode
+    chown root system /sys/class/input/input2/delay
+
+    chmod 0666 /dev/glanceview
+    chmod 0666 /dev/gv_oneled
+
+    # insert the system monitor modules
+    insmod /system/lib/modules/sm_event_log.ko
+    insmod /system/lib/modules/sm_event_driver.ko
+
+# Set CSVT audio echo Path
+    setprop vt.audio.useecho 0
+    setprop vt.audio.usemvs 1
+
+# set core dump param
+    setrlimit 4 ${persist.sys.coredump} ${persist.sys.coredump}
+    write /proc/sys/kernel/core_pattern |/system/bin/coredump\ core-%e-%p-%t-%s
+
+# Configure and enable KSM
+    write /sys/kernel/mm/ksm/pages_to_scan 100
+    write /sys/kernel/mm/ksm/sleep_millisecs 500
+    write /sys/kernel/mm/ksm/run 1
+
+#AKM8975 sensor daemon
+service akmd /system/bin/akmdfs -m2
+    class main
+    user compass
+    group compass misc input
+    disabled
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon

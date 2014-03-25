@@ -49,7 +49,7 @@ case "$target" in
         echo 1 > /sys/devices/platform/msm_sdcc.2/polling
         ;;
 
-    "msm7627a")
+    "msm7627a" | "msm7x27a")
         echo 1 > /sys/devices/platform/msm_sdcc.2/polling
         ;;
 
