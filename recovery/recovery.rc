@@ -4,6 +4,7 @@ on early-init
     start ueventd
 
 on init
+    loglevel 8
     export PATH /sbin
     export ANDROID_ROOT /system
     export ANDROID_DATA /data
@@ -54,9 +55,9 @@ service rmt_storage /rmt_storage_recovery
 
 # Always start adbd on userdebug and eng builds
 on property:ro.debuggable=1
-    #write /sys/class/android_usb/android0/enable 1
-    #start adbd
-    setprop service.adb.root 1
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    #setprop service.adb.root 1
 
 # Restart adbd so it can run as root
 on property:service.adb.root=1
@@ -71,7 +72,7 @@ on property:sys.usb.config=adb
     write /sys/class/android_usb/android0/functions adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 
 # USB compositions
 on property:sys.usb.config=diag,adb
@@ -82,7 +83,7 @@ on property:sys.usb.config=diag,adb
     write /sys/class/android_usb/android0/functions diag,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
@@ -91,5 +92,5 @@ on property:sys.usb.config=mass_storage,adb
     write /sys/class/android_usb/android0/functions adb,mass_storage
     write /sys/class/android_usb/android0/enable 1
     start adbd
-    setprop sys.usb.state $sys.usb.config
+    setprop sys.usb.state ${sys.usb.config}
 

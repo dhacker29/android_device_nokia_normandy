@@ -137,4 +137,5 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 
 # Recovery
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-TARGET_RECOVERY_INITRC := device/nokia/normandy/recovery.rc
+#BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/graphics.c
+TARGET_RECOVERY_INITRC := device/nokia/normandy/recovery/recovery.rc
