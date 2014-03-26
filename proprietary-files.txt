@@ -28,7 +28,6 @@ etc/firmware/ath6k/AR6003/hw2.1.1/athwlan.bin
 etc/firmware/ath6k/AR6003/hw2.1.1/bdata.bin
 etc/firmware/ath6k/AR6003/hw2.1.1/fw-4.bin
 etc/firmware/ath6k/AR6003/hw2.1.1/nullTestFlow.bin
-etc/firmware/ath6k/AR6003/hw2.1.1/softmac
 etc/firmware/ath6k/AR6003/hw2.1.1/utf.bin
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
@@ -109,7 +108,6 @@ lib/libOmxWmaDec.so
 lib/libOmxWmvDec.so
 lib/liboncrpc.so
 lib/libqcci_legacy.so
-lib/libqcom_omx.so
 lib/libqc-opt.so
 lib/libqdi.so
 lib/libqdp.so
@@ -136,15 +134,9 @@ vendor/lib/libWVStreamControlAPI_L1.so
 # Camera
 bin/mm-pp-daemon
 bin/mm-qcamera-daemon
-lib/libchromatix_a8140_default_video.so
-lib/libchromatix_a8140_preview.so
-lib/libchromatix_a8140_video_hfr.so
 lib/libchromatix_ar0542_default_video.so
 lib/libchromatix_ar0542_preview.so
 lib/libchromatix_ar0542_video_hfr.so
-lib/libchromatix_ar0543_default_video.so
-lib/libchromatix_ar0543_preview.so
-lib/libchromatix_ar0543_video_hfr.so
 lib/libchromatix_imx074_default_video.so
 lib/libchromatix_imx074_preview.so
 lib/libchromatix_imx074_video_hd.so
@@ -160,15 +152,6 @@ lib/libchromatix_ov2720_hfr.so
 lib/libchromatix_ov2720_preview.so
 lib/libchromatix_ov2720_zsl.so
 lib/libchromatix_ov5647_default_video.so
-lib/libchromatix_ov5647_dl_bd631ac_default_video.so
-lib/libchromatix_ov5647_dl_bd631ac_preview.so
-lib/libchromatix_ov5647_dl_bd631ac_video_hfr.so
-lib/libchromatix_ov5647_hq_dg806t_default_video.so
-lib/libchromatix_ov5647_hq_dg806t_preview.so
-lib/libchromatix_ov5647_hq_dg806t_video_hfr.so
-lib/libchromatix_ov5647_partr_cm500_default_video.so
-lib/libchromatix_ov5647_partr_cm500_preview.so
-lib/libchromatix_ov5647_partr_cm500_video_hfr.so
 lib/libchromatix_ov5647_preview.so
 lib/libchromatix_ov5647_truly_cm6868_default_video.so
 lib/libchromatix_ov5647_truly_cm6868_preview.so
@@ -186,8 +169,6 @@ lib/libchromatix_ov8825_default_video.so
 lib/libchromatix_ov8825_preview.so
 lib/libchromatix_ov9726_default_video.so
 lib/libchromatix_ov9726_preview.so
-lib/libchromatix_s5k3h2_sunny_q8s02e_default_video.so
-lib/libchromatix_s5k3h2_sunny_q8s02e_preview.so
 lib/libchromatix_s5k3l1yx_default_video.so
 lib/libchromatix_s5k3l1yx_hfr_60fps.so
 lib/libchromatix_s5k3l1yx_hfr_90fps.so
@@ -197,8 +178,6 @@ lib/libchromatix_s5k3l1yx_video_hd.so
 lib/libchromatix_s5k3l1yx_zsl.so
 lib/libchromatix_s5k4e1_default_video.so
 lib/libchromatix_s5k4e1_preview.so
-lib/libchromatix_vx6953_default_video.so
-lib/libchromatix_vx6953_preview.so
 lib/libmmcamera_faceproc.so
 lib/libmmcamera_frameproc.so
 lib/libmmcamera_hdr_lib.so
