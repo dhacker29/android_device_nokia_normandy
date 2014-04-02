@@ -31,8 +31,9 @@ USE_CAMERA_STUB := true
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
-COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
-COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DNO_UPDATE_PREVIEW
+COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE
+
+BOARD_USES_QCOM_HARDWARE := true
 
 #BOARD_HAVE_QCOM_FM := true
 
@@ -52,6 +53,7 @@ TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
 TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 
 TARGET_CORTEX_CACHE_LINE_32 := true
+TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 
 TARGET_USES_ION := true
 TARGET_USES_ASHMEM := true
@@ -82,7 +84,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1 vmalloc=200M
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.emmc=true loglevel=1 vmalloc=200M
 ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_EGL_CFG := device/nokia/normandy/config/egl.cfg
 
@@ -136,8 +138,7 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
-#BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/graphics.c
+BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/graphics.c
 TARGET_RECOVERY_INITRC := device/nokia/normandy/recovery/recovery.rc
 DEVICE_RESOLUTION := 480x800
 TW_FLASH_FROM_STORAGE := true

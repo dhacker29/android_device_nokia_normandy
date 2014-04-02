@@ -31,9 +31,9 @@
 /cache           ext4        /dev/block/mmcblk0p19
 /data            ext4        /dev/block/mmcblk0p22    length=-16384
 /recovery        emmc        /dev/block/mmcblk0p14
-#/misc            emmc        /dev/block/mmcblk0p11
-/sdcard          vfat        /dev/block/mmcblk1p1     /dev/block/mmcblk1
+/misc            emmc        /dev/block/mmcblk0p11
+/sdcard          vfat        /dev/block/mmcblk1p1     /dev/block/mmcblk1 flags=display="Micro SD";storage;wipeingui;removable
 /system          ext4        /dev/block/mmcblk0p18
 /sys_boot        vfat        /dev/block/mmcblk0p3
 /FOTA            emmc        /dev/block/mmcblk0p20
-/emmc            vfat        /dev/block/mmcblk0p21
+/sdcard1         vfat        /dev/block/mmcblk0p21    flags=display="Internal Storage";storage;wipeingui

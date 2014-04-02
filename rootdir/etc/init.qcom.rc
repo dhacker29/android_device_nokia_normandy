@@ -85,7 +85,8 @@ on boot
 
     #FM radio path
     chown system audio /dev/i2c-1
-	chmod 0660 /dev/i2c-1
+    chmod 0660 /dev/i2c-1
+
     # Allow QMUX daemon to assign port open wait time
     chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
 

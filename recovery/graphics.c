@@ -30,12 +30,7 @@
 
 #include <pixelflinger/pixelflinger.h>
 
-#ifdef BOARD_USE_CUSTOM_RECOVERY_FONT
-#include BOARD_USE_CUSTOM_RECOVERY_FONT
-#else
 #include "font_10x18.h"
-#endif
-
 #include "minui.h"
 
 #if defined(RECOVERY_BGRA)
@@ -49,8 +44,6 @@
 #define PIXEL_SIZE   2
 #endif
 
-#define NUM_BUFFERS 2
-
 typedef struct {
     GGLSurface texture;
     unsigned cwidth;
@@ -61,16 +54,19 @@ typedef struct {
 static GRFont *gr_font = 0;
 static GGLContext *gr_context = 0;
 static GGLSurface gr_font_texture;
-static GGLSurface gr_framebuffer[NUM_BUFFERS];
+static GGLSurface gr_framebuffer[2];
 static GGLSurface gr_mem_surface;
 static unsigned gr_active_fb = 0;
-static unsigned double_buffering = 0;
 
 static int gr_fb_fd = -1;
 static int gr_vt_fd = -1;
 
 static struct fb_var_screeninfo vi;
 static struct fb_fix_screeninfo fi;
+
+inline size_t roundUpToPageSize(size_t x) {
+    return (x + (PAGE_SIZE-1)) & ~(PAGE_SIZE-1);
+}
 
 static int get_framebuffer(GGLSurface *fb)
 {
@@ -130,7 +126,8 @@ static int get_framebuffer(GGLSurface *fb)
         return -1;
     }
 
-    bits = mmap(0, fi.smem_len, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    size_t size = roundUpToPageSize(vi.yres * fi.line_length) * 2;
+    bits = mmap(0, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
     if (bits == MAP_FAILED) {
         perror("failed to mmap framebuffer");
         close(fd);
@@ -143,23 +140,17 @@ static int get_framebuffer(GGLSurface *fb)
     fb->stride = fi.line_length/PIXEL_SIZE;
     fb->data = bits;
     fb->format = PIXEL_FORMAT;
-    memset(fb->data, 0, vi.yres * fi.line_length);
+    memset(fb->data, 0, roundUpToPageSize(vi.yres * fi.line_length));
 
     fb++;
-
-    /* check if we can use double buffering */
-    if (vi.yres * fi.line_length * 2 > fi.smem_len)
-        return fd;
-
-    double_buffering = 1;
 
     fb->version = sizeof(*fb);
     fb->width = vi.xres;
     fb->height = vi.yres;
     fb->stride = fi.line_length/PIXEL_SIZE;
-    fb->data = (void*) (((unsigned) bits) + vi.yres * fi.line_length);
+    fb->data = (void*) (((unsigned) bits) + roundUpToPageSize(vi.yres * fi.line_length));
     fb->format = PIXEL_FORMAT;
-    memset(fb->data, 0, vi.yres * fi.line_length);
+    memset(fb->data, 0, roundUpToPageSize(vi.yres * fi.line_length));
 
     return fd;
 }
@@ -175,8 +166,8 @@ static void get_memory_surface(GGLSurface* ms) {
 
 static void set_active_framebuffer(unsigned n)
 {
-    if (n > 1 || !double_buffering) return;
-    vi.yres_virtual = vi.yres * NUM_BUFFERS;
+    if (n > 1) return;
+    vi.yres_virtual = vi.yres * PIXEL_SIZE;
     vi.yoffset = n * vi.yres;
     vi.bits_per_pixel = PIXEL_SIZE * 8;
     if (ioctl(gr_fb_fd, FBIOPUT_VSCREENINFO, &vi) < 0) {
@@ -189,8 +180,7 @@ void gr_flip(void)
     GGLContext *gl = gr_context;
 
     /* swap front and back buffers */
-    if (double_buffering)
-        gr_active_fb = (gr_active_fb + 1) & 1;
+    gr_active_fb = (gr_active_fb + 1) & 1;
 
     /* copy data from the in-memory surface to the buffer we're about
      * to make active. */
@@ -351,8 +341,8 @@ int gr_init(void)
     gl->enable(gl, GGL_BLEND);
     gl->blendFunc(gl, GGL_SRC_ALPHA, GGL_ONE_MINUS_SRC_ALPHA);
 
-    gr_fb_blank(true);
-    gr_fb_blank(false);
+    //gr_fb_blank(true);
+    //gr_fb_blank(false);
 
     return 0;
 }

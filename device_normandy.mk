@@ -161,8 +161,17 @@ PRODUCT_PACKAGES += \
     thermald-8x25-msm2-pmic_therm.conf \
     vold.fstab
 
+# Common properties
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true \
+    telephony.lteOnGsmDevice=0
+
 # QC Perf
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=/system/lib/libqc-opt.so
+
+# TWRP
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 
 $(call inherit-product, vendor/nokia/normandy/normandy-vendor.mk)
