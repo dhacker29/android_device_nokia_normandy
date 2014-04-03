@@ -126,6 +126,9 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/graphics.c
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TW_BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/tw_graphics.c
+TW_TARGET_USES_QCOM_BSP := true
 TARGET_RECOVERY_INITRC := device/nokia/normandy/recovery/recovery.rc
 DEVICE_RESOLUTION := 480x800
 TW_FLASH_FROM_STORAGE := true
