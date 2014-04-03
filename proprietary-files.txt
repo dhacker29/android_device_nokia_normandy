@@ -2,10 +2,12 @@
 bin/akmdfs
 bin/bridgemgrd
 bin/btnvtool
+bin/cnd
 bin/ds_fmc_appd
 bin/fmconfig
 bin/fm_qsoc_patches
 bin/fstrim
+bin/gpu_dcvsd
 bin/hci_qcomm_init
 bin/mpdecision
 bin/netmgrd

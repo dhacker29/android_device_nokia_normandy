@@ -39,10 +39,8 @@
             android:storageDescription="@string/storage_sd_card"
             android:primary="true"
             android:removable="true" />
-    <!-- internal emulated storage -->
-    <storage android:mountPoint="/storage/emmc"
+    <storage android:mountPoint="/storage/sdcard1"
             android:storageDescription="@string/storage_internal"
             android:primary="false"
-            android:emulated="true"
-            android:mtpReserve="100" />
+            android:removable="false" />
 </StorageList>

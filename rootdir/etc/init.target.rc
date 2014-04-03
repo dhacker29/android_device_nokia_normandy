@@ -87,12 +87,6 @@ service sd_hot_plug /system/bin/sh /system/etc/init.qcom.sd_hot_plug.sh
     disabled
     oneshot
 
-service wlan_tool /system/bin/wlan_tool
-    class late_start
-    user root
-    group wifi system net_admin inet shell
-    oneshot
-
 on boot
    start qcamerasvr
    start gpu_dcvsd
@@ -173,8 +167,6 @@ service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
 
 on property:sys.radio.shutdown=true
    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
-   user root
-   group root
 
 service gpu_dcvsd /system/bin/gpu_dcvsd
     class late_start
