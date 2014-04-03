@@ -61,8 +61,8 @@ PRODUCT_COPY_FILES += \
 
 # Media
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/media_profiles_7627a.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/media/media_codecs_7627a.xml:system/etc/media_codecs.xml
+    #$(LOCAL_PATH)/media/media_profiles_7627a.xml:system/etc/media_profiles.xml
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -88,6 +88,16 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libqdutils \
     libqdMetaData
+
+# Keys
+PRODUCT_PACKAGES += \
+    7x27a_kp.kcm \
+    atmel_mxt_ts.kl \
+    synaptics_rmi4_i2c.kl \
+    ft5x06_ts.kl \
+    surf_keypad.kl \
+    7k_handset.kl \
+    7x27a_kp.kl
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

@@ -1,6 +1,5 @@
 # Bins
 bin/akmdfs
-bin/ATFWD-daemon
 bin/bridgemgrd
 bin/btnvtool
 bin/ds_fmc_appd
@@ -91,6 +90,7 @@ lib/libOmxAmrEnc.so
 lib/libOmxAmrRtpDec.so
 lib/libOmxAmrwbDec.so
 lib/libOmxEvrcDec.so
+lib/libOmxEvrcEnc.so
 lib/libOmxEvrcHwDec.so
 lib/libOmxH264Dec.so
 lib/libOmxIttiamVdec.so
