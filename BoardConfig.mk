@@ -100,6 +100,11 @@ COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB -DQCOM_BSP
 USE_OPENGL_RENDERER := true
 TARGET_FORCE_CPU_UPLOAD := true
 
+# Storage / Sharing
+BOARD_VOLD_MAX_PARTITIONS := 35
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
+
 # GPS
 TARGET_NO_RPC := false
 BOARD_USES_QCOM_GPS := true
@@ -135,5 +140,3 @@ TW_FLASH_FROM_STORAGE := true
 TW_INTERNAL_STORAGE_PATH := "/sdcard1"
 TW_EXTERNAL_STORAGE_PATH := "/sdcard"
 TW_DEFAULT_EXTERNAL_STORAGE := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
-
