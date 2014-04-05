@@ -116,8 +116,8 @@ PRODUCT_PACKAGES += \
 
 # Misc
 PRODUCT_PACKAGES += \
-    charger \
-    charger_res_images \
+    nokia_charger \
+    nokia_charger_res_images \
     lights.msm7x27a
 
 # OMX
