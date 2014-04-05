@@ -628,7 +628,7 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
     disabled
     oneshot
 
-service charger /nokia_charger
+service charger /charger
     class charger
 
 # Restart adbd so it can run as root
