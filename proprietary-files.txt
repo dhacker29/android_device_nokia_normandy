@@ -38,8 +38,8 @@ etc/OperatorPolicy.xml
 etc/UserPolicy.xml
 
 # Framework
-framework/qcnvitems.jar
-framework/qcrilhook.jar
+-framework/qcnvitems.jar
+-framework/qcrilhook.jar
 
 # HAL
 lib/hw/camera.msm7627a.so:lib/hw/camera.msm7x27a.so
@@ -56,11 +56,13 @@ lib/libcneapiclient.so
 lib/libcnefeatureconfig.so
 lib/libcneqmiutils.so
 lib/libcneutils.so
+-lib/libcommondefs.so
 lib/libconfigdb.so
 lib/libdiag.so
 lib/libdivxdrmdecrypt.so
 lib/libDivxDrm.so
 lib/libdsi_netctrl.so
+lib/libdsm.so
 lib/libdsucsd.so
 lib/libdsutils.so
 lib/libextRil.so
