@@ -175,7 +175,8 @@ PRODUCT_PACKAGES += \
 # Common properties
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
-    telephony.lteOnGsmDevice=0
+    telephony.lteOnGsmDevice=0 \
+    persist.sys.usb.config=mtp,adb
 
 # QC Perf
 PRODUCT_PROPERTY_OVERRIDES += \
