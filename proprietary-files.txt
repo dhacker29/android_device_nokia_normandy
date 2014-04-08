@@ -17,7 +17,9 @@ bin/port-bridge
 bin/psensorCal
 bin/qmiproxy
 bin/qmuxd
+bin/qosmgr
 bin/radish
+bin/rild
 bin/rmt_storage
 bin/sapd
 bin/subsystem_ramdump
@@ -63,6 +65,8 @@ lib/libdivxdrmdecrypt.so
 lib/libDivxDrm.so
 lib/libdsi_netctrl.so
 lib/libdsm.so
+lib/libdsprofile.so
+lib/libdss.so
 lib/libdsucsd.so
 lib/libdsutils.so
 lib/libextRil.so
@@ -90,7 +94,9 @@ lib/libOmxAacEnc.so
 lib/libOmxAc3HwDec.so
 lib/libOmxAdpcmDec.so
 lib/libOmxAmrDec.so
+lib/libomx_amrdec_sharedlibrary.so
 lib/libOmxAmrEnc.so
+lib/libomx_amrenc_sharedlibrary.so
 lib/libOmxAmrRtpDec.so
 lib/libOmxAmrwbDec.so
 lib/libOmxEvrcDec.so
@@ -106,6 +112,7 @@ lib/libOmxQcelp13Dec.so
 lib/libOmxQcelp13Enc.so
 lib/libOmxQcelpHwDec.so
 lib/libOmxrv9Dec.so
+lib/libomx_sharedlibrary.so
 lib/libOmxVidEnc.so
 lib/libOmxVp8Dec.so
 lib/libOmxWmaDec.so
@@ -120,11 +127,16 @@ lib/libqmi_client_qmux.so
 lib/libqmi_csvt_srvc.so
 lib/libqmiservices.so
 lib/libqueue.so
+lib/libril.so
 lib/libril-qc-1.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
+lib/libsnd.so
+lib/libsrsprocessing.so
 lib/libthermalclient.so
 lib/libtscamera-ext.so
+lib/libulp.so
+lib/libulp2.so
 lib/libwmsts.so
 lib/libwms.so
 

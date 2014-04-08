@@ -129,6 +129,9 @@ BOARD_WLAN_DEVICE := ath6kl
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl.ko"
 WIFI_DRIVER_MODULE_NAME := "ath6kl"
 
+# Assert
+TARGET_OTA_ASSERT_DEVICE := normandy,msm8625
+
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/graphics.c

@@ -118,6 +118,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images \
+    libnl_2 \
     lights.msm7x27a
 
 # OMX
