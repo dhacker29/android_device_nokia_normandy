@@ -80,6 +80,7 @@ lib/liblasic.so
 lib/libmm-abl.so
 lib/libmm-abl-oem.so
 lib/libmm-adspsvc.so
+lib/libmm-audio-resampler.so
 lib/libmm-color-convertor.so
 lib/libmmipl.so
 lib/libmmstillomx.so
