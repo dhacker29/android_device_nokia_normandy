@@ -132,7 +132,7 @@ lib/libril-qc-1.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 lib/libsnd.so
-lib/libsrsprocessing.so
+-lib/libsrsprocessing.so
 lib/libthermalclient.so
 lib/libtscamera-ext.so
 lib/libulp.so

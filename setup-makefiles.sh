@@ -64,7 +64,8 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 
 # Pick up overlay for features that depend on non-open-source files
 PRODUCT_PACKAGES += \\
-    libcommondefs
+    libcommondefs \\
+    libsrsprocessing
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 
@@ -107,12 +108,22 @@ EOF
 
 LOCAL_PATH := \$(call my-dir)
 
-ifeq (\$(TARGET_DEVICE),$DEVICE)
+ifneq (\$(filter normandy msm8625,\$(TARGET_DEVICE)),)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := libcommondefs
 LOCAL_MODULE_OWNER := nokia
 LOCAL_SRC_FILES := libcommondefs.so
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_PATH := \$(TARGET_OUT_SHARED_LIBRARIES)
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := libsrsprocessing
+LOCAL_MODULE_OWNER := nokia
+LOCAL_SRC_FILES := libsrsprocessing.so
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .so
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
@@ -145,7 +156,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-echo "ifeq (\$(TARGET_DEVICE),$DEVICE)" >> ../../../${OUTDIR}/proprietary/app/Android.mk
+echo "ifneq (\$(filter normandy msm8625,\$(TARGET_DEVICE)),)" >> ../../../${OUTDIR}/proprietary/app/Android.mk
 echo ""  >> ../../../${OUTDIR}/proprietary/app/Android.mk
 
 for APK in `ls ../../../${OUTDIR}/proprietary/app/*apk`; do
@@ -190,7 +201,7 @@ LOCAL_PATH := \$(call my-dir)
 
 EOF
 
-echo "ifeq (\$(TARGET_DEVICE),$DEVICE)" >> ../../../${OUTDIR}/proprietary/framework/Android.mk
+echo "ifneq (\$(filter normandy msm8625,\$(TARGET_DEVICE)),)" >> ../../../${OUTDIR}/proprietary/framework/Android.mk
 echo ""  >> ../../../${OUTDIR}/proprietary/framework/Android.mk
 
 for JAR in `ls ../../../${OUTDIR}/proprietary/framework/*jar`; do
