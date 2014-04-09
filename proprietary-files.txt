@@ -120,6 +120,7 @@ lib/libOmxVp8Dec.so
 lib/libOmxWmaDec.so
 lib/libOmxWmvDec.so
 lib/liboncrpc.so
+lib/libpbmlib.so
 lib/libqcci_legacy.so
 lib/libqc-opt.so
 lib/libqdi.so
@@ -139,15 +140,9 @@ lib/libthermalclient.so
 lib/libtscamera-ext.so
 lib/libulp.so
 lib/libulp2.so
+lib/libvoem_if.so
 lib/libwmsts.so
 lib/libwms.so
-
-# DRM
-lib/libWVphoneAPI.so
-vendor/lib/drm/libdrmwvmplugin.so
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L1.so
 
 # Camera
 bin/mm-pp-daemon
