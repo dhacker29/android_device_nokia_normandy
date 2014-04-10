@@ -47,7 +47,7 @@ etc/UserPolicy.xml
 lib/hw/audio.primary.msm7627a.so:lib/hw/audio.primary.msm7x27a.so
 lib/hw/camera.msm7627a.so:lib/hw/camera.msm7x27a.so
 vendor/lib/hw/power.qcom.so
-lib/hw/sensors.msm8625.so:lib/hw/sensors.7x27a.so
+lib/hw/sensors.msm8625.so:lib/hw/sensors.default.so
 
 # Libs
 lib/libaudcal.so
