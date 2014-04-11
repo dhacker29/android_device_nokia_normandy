@@ -31,7 +31,6 @@ on early-boot
     start version-set
 
 on init
-    loglevel 8
     mkdir /variant 0555 system system
     mkdir /preload 0555 system system
 
@@ -40,19 +39,6 @@ on init
     mount debugfs debugfs /mnt/debugfs gid=1000
 
 on post-fs
-    chmod 755 /system/etc/init.qcom.bt.sh
-    chmod 755 /system/etc/init.qcom.fm.sh
-    chmod 755 /system/etc/init.ath3k.bt.sh
-    chmod 755 /system/etc/init.qcom.coex.sh
-    chmod 755 /system/etc/init.qcom.sdio.sh
-    chmod 755 /system/etc/init.qcom.wifi.sh
-    chmod 755 /system/etc/init.ft.fwupdate.sh
-    chmod 755 /system/etc/init.target.8x25.sh
-    chmod 755 /system/etc/init.qcom.efs.sync.sh
-    chmod 755 /system/etc/init.qcom.post_boot.sh
-    chmod 755 /system/etc/init.qcom.sd_hot_plug.sh
-    chmod 755 /system/etc/init.qcom.thermald_conf.sh
-    chmod 755 /system/etc/init.qcom.composition_type.sh
     exec /system/bin/sh /system/etc/init.qcom.thermald_conf.sh
 
     #Borqs Created tmp directory for CSVT LoopBack Call
@@ -141,10 +127,6 @@ on boot
     # insert the system monitor modules
     insmod /system/lib/modules/sm_event_log.ko
     insmod /system/lib/modules/sm_event_driver.ko
-
-    # compat-wireless modules needed for ath6kl
-    insmod /system/lib/modules/compat.ko
-    insmod /system/lib/modules/cfg80211.ko
 
 # Set CSVT audio echo Path
     setprop vt.audio.useecho 0
