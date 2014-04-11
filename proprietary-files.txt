@@ -50,6 +50,7 @@ vendor/lib/hw/power.qcom.so
 lib/hw/sensors.msm8625.so:lib/hw/sensors.default.so
 
 # Libs
+lib/libadc.so
 lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libaudioeq.so
