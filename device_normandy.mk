@@ -56,6 +56,7 @@ PRODUCT_COPY_FILES += \
 
 # Config
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/config/AudioFilter.csv:system/etc/AudioFilter.csv \
     $(LOCAL_PATH)/config/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/config/gps.conf:system/etc/gps.conf
 

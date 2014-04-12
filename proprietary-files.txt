@@ -34,7 +34,6 @@ etc/firmware/ath6k/AR6003/hw2.1.1/nullTestFlow.bin
 etc/firmware/ath6k/AR6003/hw2.1.1/utf.bin
 etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
-etc/AudioFilter.csv
 etc/loc_parameter.ini
 etc/OperatorPolicy.xml
 etc/UserPolicy.xml
@@ -51,7 +50,7 @@ lib/hw/sensors.msm8625.so:lib/hw/sensors.default.so
 
 # Libs
 lib/libadc.so
-lib/libaudcal.so
+-lib/libaudcal.so
 lib/libaudioalsa.so
 lib/libaudioeq.so
 lib/libauth.so

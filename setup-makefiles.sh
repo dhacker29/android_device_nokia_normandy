@@ -64,6 +64,7 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 
 # Pick up overlay for features that depend on non-open-source files
 PRODUCT_PACKAGES += \\
+    libaudcal \\
     libcommondefs \\
     libsrsprocessing
 
@@ -109,6 +110,16 @@ EOF
 LOCAL_PATH := \$(call my-dir)
 
 ifneq (\$(filter normandy msm8625,\$(TARGET_DEVICE)),)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := libaudcal
+LOCAL_MODULE_OWNER := nokia
+LOCAL_SRC_FILES := libaudcal.so
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_PATH := \$(TARGET_OUT_SHARED_LIBRARIES)
+include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
 LOCAL_MODULE := libcommondefs
