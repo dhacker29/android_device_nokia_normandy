@@ -57,6 +57,16 @@ BOARD_USES_ADRENO_200 := true
 TARGET_KERNEL_SOURCE := kernel/nokia/normandy
 TARGET_KERNEL_CONFIG := cyanogenmod_normandy_defconfig
 
+KERNEL_EXTERNAL_MODULES:
+	mkdir -p $(KERNEL_MODULES_OUT)/ath6kl
+	rm -rf $(TARGET_OUT_INTERMEDIATES)/compat-wireless
+	cp -a device/nokia/normandy/compat-wireless $(TARGET_OUT_INTERMEDIATES)/
+	$(MAKE) -C $(TARGET_OUT_INTERMEDIATES)/compat-wireless KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH="arm" CROSS_COMPILE="arm-eabi-"
+	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/cfg80211.ko $(KERNEL_MODULES_OUT)/ath6kl/cfg80211.ko
+	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/wlan.ko $(KERNEL_MODULES_OUT)/ath6kl/ath6kl_sdio.ko
+
+TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES
+
 # Kernel
 BOARD_KERNEL_BASE    := 0x00200000
 BOARD_KERNEL_PAGESIZE := 4096
