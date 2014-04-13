@@ -121,7 +121,7 @@ lib/libOmxWmvDec.so
 lib/liboncrpc.so
 lib/libpbmlib.so
 lib/libqcci_legacy.so
-lib/libqc-opt.so
+-lib/libqc-opt.so
 lib/libqdi.so
 lib/libqdp.so
 lib/libqmi.so

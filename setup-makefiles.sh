@@ -66,7 +66,8 @@ DEVICE_PACKAGE_OVERLAYS += vendor/$VENDOR/$DEVICE/overlay
 PRODUCT_PACKAGES += \\
     libaudcal \\
     libcommondefs \\
-    libsrsprocessing
+    libsrsprocessing \\
+    libqc-opt
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 
@@ -135,6 +136,16 @@ include \$(CLEAR_VARS)
 LOCAL_MODULE := libsrsprocessing
 LOCAL_MODULE_OWNER := nokia
 LOCAL_SRC_FILES := libsrsprocessing.so
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_CLASS := SHARED_LIBRARIES
+LOCAL_MODULE_PATH := \$(TARGET_OUT_SHARED_LIBRARIES)
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE := libqc-opt
+LOCAL_MODULE_OWNER := nokia
+LOCAL_SRC_FILES := libqc-opt.so
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := .so
 LOCAL_MODULE_CLASS := SHARED_LIBRARIES
