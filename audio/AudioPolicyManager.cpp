@@ -251,6 +251,7 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
           device = mAvailableOutputDevices & AudioSystem::DEVICE_OUT_SPEAKER;
           break;
       }
+#ifdef QCOM_FM_ENABLED
       if (mAvailableOutputDevices & AudioSystem::DEVICE_OUT_FM) {
          device |= AudioSystem::DEVICE_OUT_FM;
          if(FM_ANALOG == getFMMode()){
@@ -260,6 +261,7 @@ audio_devices_t AudioPolicyManager::getDeviceForStrategy(routing_strategy strate
                 device &= ~(device & AudioSystem::DEVICE_OUT_WIRED_HEADSET);
          }
       }
+#endif
       // Do not play media stream if in call and the requested device would change the hardware
       // output routing
       if (mPhoneState == AudioSystem::MODE_IN_CALL &&
@@ -300,8 +302,12 @@ uint32_t AudioPolicyManager::checkDeviceMuteStrategies(AudioOutputDescriptor *ou
 
     uint32_t muteWaitMs = 0;
     audio_devices_t device = outputDesc->device();
+#ifdef QCOM_FM_ENABLED
     bool shouldMute = (outputDesc->refCount() != 0) &&
                     (AudioSystem::popCount(device) >= (device & AUDIO_DEVICE_OUT_FM ? 3 : 2));
+#else
+    bool shouldMute = (outputDesc->refCount() != 0);
+#endif
     // temporary mute output if device selection changes to avoid volume bursts due to
     // different per device volumes
     bool tempMute = (outputDesc->refCount() != 0) && (getDeviceForVolume(device) != getDeviceForVolume(prevDevice));
@@ -389,6 +395,7 @@ status_t AudioPolicyManager::setDeviceConnectionState(AudioSystem::audio_devices
         {
         // handle output device connection
         case AudioSystem::DEVICE_STATE_AVAILABLE:
+#ifdef QCOM_FM_ENABLED
             if(device == AudioSystem::DEVICE_OUT_FM){
                 char value[PROPERTY_VALUE_MAX];
                 fm_modes fmMode = FM_DIGITAL;
@@ -411,6 +418,7 @@ status_t AudioPolicyManager::setDeviceConnectionState(AudioSystem::audio_devices
                     ALOGW("FM started in %d Mode",fmMode);
                 }
             }
+#endif
             if (mAvailableOutputDevices & device) {
                 ALOGW("setDeviceConnectionState() device already connected: %x", device);
                 return INVALID_OPERATION;
@@ -452,6 +460,7 @@ status_t AudioPolicyManager::setDeviceConnectionState(AudioSystem::audio_devices
             break;
         // handle output device disconnection
         case AudioSystem::DEVICE_STATE_UNAVAILABLE: {
+#ifdef QCOM_FM_ENABLED
             if(device == AudioSystem::DEVICE_OUT_FM){
                 uint32_t newDevice;
                 fm_modes prevFmMode = getFMMode();
@@ -468,6 +477,7 @@ status_t AudioPolicyManager::setDeviceConnectionState(AudioSystem::audio_devices
                     setOutputDevice(mPrimaryOutput, AUDIO_DEVICE_OUT_WIRED_HEADSET, true);
                 }
             }
+#endif
             if (!(mAvailableOutputDevices & device)) {
                 ALOGW("setDeviceConnectionState() device not connected: %x", device);
                 return INVALID_OPERATION;
@@ -497,6 +507,7 @@ status_t AudioPolicyManager::setDeviceConnectionState(AudioSystem::audio_devices
         }
 
         audio_devices_t newDevice = AudioPolicyManagerBase::getNewDevice(mPrimaryOutput, false /*fromCache*/);
+#ifdef QCOM_FM_ENABLED
         if (device == AudioSystem::DEVICE_OUT_FM) {
             if (state == AudioSystem::DEVICE_STATE_AVAILABLE) {
                 mOutputs.valueFor(mPrimaryOutput)->changeRefCount(AudioSystem::FM, 1);
@@ -508,6 +519,7 @@ status_t AudioPolicyManager::setDeviceConnectionState(AudioSystem::audio_devices
                 newDevice = getDeviceForStrategy(STRATEGY_MEDIA, false);
             }
         }
+#endif
         setOutputDevice(mPrimaryOutput, newDevice);
         checkA2dpSuspend();
         AudioPolicyManagerBase::checkOutputForAllStrategies();
@@ -823,12 +835,14 @@ audio_devices_t AudioPolicyManager::getDeviceForInputSource(int inputSource)
             device = AudioSystem::DEVICE_IN_VOICE_CALL;
         }
         break;
+#ifdef QCOM_FM_ENABLED
     case AUDIO_SOURCE_FM_RX:
         device = AudioSystem::DEVICE_IN_FM_RX;
         break;
     case AUDIO_SOURCE_FM_RX_A2DP:
         device = AudioSystem::DEVICE_IN_FM_RX_A2DP;
         break;
+#endif
     default:
         ALOGW("getDeviceForInputSource() invalid input source %d", inputSource);
         break;
@@ -882,6 +896,7 @@ status_t AudioPolicyManager::startOutput(audio_io_handle_t output,
                 }
             }
         }
+#ifdef QCOM_FM_ENABLED
     if((stream == AudioSystem::SYSTEM) && (FM_ANALOG == getFMMode())
     && (newDevice == (audio_devices_t)AudioSystem::DEVICE_OUT_FM))
     {
@@ -890,6 +905,7 @@ status_t AudioPolicyManager::startOutput(audio_io_handle_t output,
         muteWaitMs = setOutputDevice(output, (audio_devices_t)newDevice, true);
     }
     else
+#endif
         muteWaitMs = setOutputDevice(output, (audio_devices_t)newDevice, force);
 
         // handle special case for sonification while in call
@@ -990,6 +1006,7 @@ status_t AudioPolicyManager::stopInput(audio_io_handle_t input)
         AudioParameter param = AudioParameter();
         param.addInt(String8(AudioParameter::keyRouting), 0);
         mpClientInterface->setParameters(input, param.toString());
+#ifdef QCOM_FM_ENABLED
         if (mAvailableOutputDevices & AudioSystem::DEVICE_OUT_FM) {
             ALOGD("Calling applyStreamVOlume from stopInput, device no: %x",
                   (audio_devices_t)(AudioSystem::DEVICE_OUT_FM));
@@ -998,6 +1015,7 @@ status_t AudioPolicyManager::stopInput(audio_io_handle_t input)
             else if (FM_DIGITAL == getFMMode())
                   applyStreamVolumes(mPrimaryOutput, (audio_devices_t)(AudioSystem::DEVICE_OUT_SPEAKER), 0, true);
         }
+#endif
         inputDesc->mRefCount = 0;
         return NO_ERROR;
     }
@@ -1069,9 +1087,11 @@ audio_devices_t AudioPolicyManager::getDeviceForVolume(audio_devices_t device)
         if (device & AUDIO_DEVICE_OUT_SPEAKER) {
             device = AUDIO_DEVICE_OUT_SPEAKER;
         }
+#ifdef QCOM_FM_ENABLED
         else if (device & AUDIO_DEVICE_OUT_FM) {
             device = AUDIO_DEVICE_OUT_FM;
         }
+#endif
         else if((device & AUDIO_DEVICE_OUT_WIRED_HEADSET) != 0) {
             device = AUDIO_DEVICE_OUT_WIRED_HEADSET;
         }
@@ -1120,7 +1140,10 @@ status_t AudioPolicyManager::checkAndSetVolume(int stream, int index, audio_io_h
     // - the float value returned by computeVolume() changed
     // - the force flag is set
     if (volume != mOutputs.valueFor(output)->mCurVolume[stream] 
-            || (stream == AudioSystem::FM) || force) {
+#ifdef QCOM_FM_ENABLED
+            || (stream == AudioSystem::FM)
+#endif
+            || force) {
         mOutputs.valueFor(output)->mCurVolume[stream] = volume;
         ALOGVV("checkAndSetVolume() for output %d stream %d, volume %f, delay %d", output, stream, volume, delayMs);
         if (stream == AudioSystem::VOICE_CALL ||
@@ -1150,11 +1173,15 @@ status_t AudioPolicyManager::checkAndSetVolume(int stream, int index, audio_io_h
         }
 
         if ((voiceVolume != mLastVoiceVolume && (output == mPrimaryOutput ||
-           isDirectOutput(output))) &&
-            (!(mAvailableOutputDevices & AudioSystem::DEVICE_OUT_FM))) {
+           isDirectOutput(output)))
+#ifdef QCOM_FM_ENABLED
+            && (!(mAvailableOutputDevices & AudioSystem::DEVICE_OUT_FM))
+#endif
+            ) {
             mpClientInterface->setVoiceVolume(voiceVolume, delayMs);
             mLastVoiceVolume = voiceVolume;
         }
+#ifdef QCOM_FM_ENABLED
     } else if ((stream == AudioSystem::FM) && (mAvailableOutputDevices & AudioSystem::DEVICE_OUT_FM)) {
         float fmVolume = -1.0;
         fmVolume = (float)index/(float)mStreams[stream].mIndexMax;
@@ -1163,6 +1190,7 @@ status_t AudioPolicyManager::checkAndSetVolume(int stream, int index, audio_io_h
             mpClientInterface->setFmVolume(fmVolume, delayMs);
             mLastVoiceVolume = fmVolume;
         }
+#endif
       }
     return NO_ERROR;
 }
