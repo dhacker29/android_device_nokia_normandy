@@ -24,7 +24,6 @@ wlan-y += drivers/net/wireless/ath/ath6kl-3.5/ap.o
 ccflags-y += -DCONFIG_ATH6KL_UB134
 endif
 
-ifeq ($(BUILD_ATH6KL_VER_32), 1)
 obj-m += wlan.o
 
 wlan-y += drivers/net/wireless/ath/ath6kl/debug.o
@@ -47,9 +46,6 @@ wlan-y += drivers/net/wireless/ath/ath6kl/softmac.o
 wlan-y +=  drivers/net/wireless/ath/ath6kl/testmode.o
 wlan-y += drivers/net/wireless/ath/ath6kl/wmiconfig.o
 wlan-y += drivers/net/wireless/ath/ath6kl/recovery.o
-endif
-
-ifeq ($(HAVE_CFG80211), 1)
 
 obj-$(CONFIG_CFG80211) += cfg80211.o
 
@@ -59,8 +55,8 @@ cfg80211-$(CONFIG_CFG80211_DEBUGFS) += net/wireless/debugfs.o
 cfg80211-y += net/wireless/wext-compat.o net/wireless/wext-sme.o
 cfg80211-y += net/wireless/regdb.o
 
-$(obj)/net/wireless/regdb.c:  $(PWD)/$(src)/net/wireless/db.txt $(PWD)/$(src)/net/wireless/genregdb.awk
-	@$(AWK) -f $(PWD)/$(src)/net/wireless/genregdb.awk < $< > $@
+$(obj)/net/wireless/regdb.c:  $(PWD)/../../../../..$(src)/net/wireless/db.txt $(PWD)/../../../../..$(src)/net/wireless/genregdb.awk
+	@$(AWK) -f $(PWD)/../../../../..$(src)/net/wireless/genregdb.awk < $< > $@
 
 clean-files := net/wireless/regdb.c
 
@@ -72,26 +68,13 @@ ccflags-y += -DCONFIG_ATH6KL_REGDOMAIN
 ccflags-y += -DCONFIG_CFG80211_INTERNAL_REGDB
 ccflags-y += -D__CHECK_ENDIAN__
 
-ccflags-y += -I../external/compat-wireless/include
-ccflags-y += -I../external/compat-wireless/net/wireless
+ccflags-y += -I../../../device/nokia/normandy/compat-wireless/include
+ccflags-y += -I../../../device/nokia/normandy/compat-wireless/net/wireless
 ccflags-y += -include include/linux/ieee80211.h
 ccflags-y += -include include/linux/nl80211.h
 ccflags-y += -include include/net/cfg80211.h
 ccflags-y += -include include/linux/compat-2.6.h
 ccflags-y += -include ../../$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/linux/version.h
-else
-ifeq ($(HAVE_CFG80211_KERNEL3_4), 1)
-ccflags-y += -DATH6KL_SUPPORT_NL80211_KERNEL3_4
-endif
-ifeq ($(HAVE_CFG80211_KERNEL3_7), 1)
-ccflags-y += -DATH6KL_SUPPORT_NL80211_KERNEL3_6
-ccflags-y += -DATH6KL_SUPPORT_NETLINK_KERNEL3_6
-ccflags-y += -DATH6KL_SUPPORT_NETLINK_KERNEL3_7
-endif
-ccflags-y += -DCONFIG_ATH6KL_DEBUG
-ccflags-y += -DCONFIG_ATH6KL_REGDOMAIN
-ccflags-y += -D__CHECK_ENDIAN__
-endif
 
 ifeq ($(BUILD_ATH_ETH_ALX), 1)
 
@@ -115,7 +98,7 @@ EXTRA_CFLAGS += \
         -DCOMPAT_PROJECT="\"Compat-wireless\"" \
         -DCOMPAT_VERSION="\"$(shell cat $(PWD)/$(src)/compat_version)\""
 
-ccflags-y += -I../external/compat-wireless/include
+ccflags-y += -I../../../device/nokia/normandy/wireless/compat-wireless/include
 ccflags-y += -include include/linux/compat-2.6.h
 ccflags-y += -include ../../$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include/linux/version.h
 
