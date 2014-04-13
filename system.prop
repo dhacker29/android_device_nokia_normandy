@@ -128,7 +128,7 @@ ro.ril.transmitpower=true
 #System prop to determine availability of
 #analog fm path
 #
-ro.fm.analogpath.supported=false
+ro.fm.analogpath.supported=true
 
 #
 #System property for FM transmitter
