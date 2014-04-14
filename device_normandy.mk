@@ -107,6 +107,12 @@ PRODUCT_PACKAGES += \
     resize2fs \
     setup_fs
 
+# FM Radio
+PRODUCT_PACKAGES += \
+    FM2 \
+    libqcomfm_jni \
+    qcom.fmradio
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm7x27a \
