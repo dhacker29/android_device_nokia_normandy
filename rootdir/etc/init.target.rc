@@ -173,10 +173,10 @@ service gpu_dcvsd /system/bin/gpu_dcvsd
     user root
     oneshot
 
-service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
-    user system
-    group system
-    disabled
+#service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
+#    user system
+#    group system
+#    disabled
 
 #shenzhiyong@byd.com add for psensor calibration
 service psensorCal /system/bin/psensorCal

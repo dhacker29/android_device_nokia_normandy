@@ -40,7 +40,7 @@ mount -o rw,remount,barrier=1 /system
 /system/bin/sh /system/etc/init.qcom.thermald_conf.sh
 
 # Run wifi script
-/system/bin/sh /system/etc/init.qcom.wifi.sh
+#/system/bin/sh /system/etc/init.qcom.wifi.sh
 
 # This should be the last command
 # remount system as read-only.

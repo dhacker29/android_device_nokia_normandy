@@ -29,6 +29,7 @@ import init.qcom.usb.rc
 #import init.target.rc
 
 on init
+    loglevel 8
     # Set permissions for persist partition
     mkdir /persist 0771 system system
 
@@ -267,9 +268,9 @@ on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start config_bluetooth
 
-service cnd /system/bin/cnd
-    class late_start
-    socket cnd stream 666 root radio
+#service cnd /system/bin/cnd
+#    class late_start
+#    socket cnd stream 666 root radio
 
 service rmt_storage /system/bin/rmt_storage
     class core
@@ -524,10 +525,6 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
     class late_start
     user root
     disabled
-    oneshot
-
-service qcom-wifi /system/bin/sh /system/etc/init.qcom.wifi.sh
-    class late_start
     oneshot
 
 service wifi-sdio-on /system/bin/sh /system/etc/init.qcom.sdio.sh

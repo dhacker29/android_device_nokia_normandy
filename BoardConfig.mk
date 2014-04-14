@@ -62,8 +62,11 @@ KERNEL_EXTERNAL_MODULES:
 	rm -rf $(TARGET_OUT_INTERMEDIATES)/compat-wireless
 	cp -a device/nokia/normandy/compat-wireless $(TARGET_OUT_INTERMEDIATES)/
 	$(MAKE) -C $(TARGET_OUT_INTERMEDIATES)/compat-wireless KLIB=$(KERNEL_OUT) KLIB_BUILD=$(KERNEL_OUT) ARCH="arm" CROSS_COMPILE="arm-eabi-"
+	rm $(KERNEL_MODULES_OUT)/cfg80211.ko
 	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/cfg80211.ko $(KERNEL_MODULES_OUT)/ath6kl/cfg80211.ko
 	$(TARGET_OBJCOPY) --strip-unneeded $(TARGET_OUT_INTERMEDIATES)/compat-wireless/wlan.ko $(KERNEL_MODULES_OUT)/ath6kl/ath6kl_sdio.ko
+	ln -sf /system/lib/modules/ath6kl/cfg80211.ko $(KERNEL_MODULES_OUT)/cfg80211.ko
+	ln -sf /system/lib/modules/ath6kl/ath6kl_sdio.ko $(KERNEL_MODULES_OUT)/wlan.ko
 
 TARGET_KERNEL_MODULES := KERNEL_EXTERNAL_MODULES
 
@@ -121,21 +124,21 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 TARGET_NO_RPC := false
 
 # WLAN
-BOARD_HAS_ATH_WLAN := true
+BOARD_HAS_ATH_WLAN          := true
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_HOSTAPD_DRIVER := NL80211
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-HOSTAPD_VERSION := VER_0_8_X
-WIFI_CFG80211_DRIVER_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
-WIFI_CFG80211_DRIVER_MODULE_NAME := "cfg80211"
-WIFI_CFG80211_DRIVER_MODULE_ARG  := ""
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/ath6kl_sdio.ko"
-WIFI_DRIVER_MODULE_NAME := "ath6kl_sdio"
-WIFI_DRIVER_MODULE_ARG := ""
-WIFI_TEST_INTERFACE     := "sta"
-WIFI_DRIVER_FW_PATH_STA := "sta"
-WIFI_DRIVER_FW_PATH_AP  := "ap"
-WIFI_DRIVER_FW_PATH_P2P := "p2p"
+BOARD_HOSTAPD_DRIVER        := NL80211
+WPA_SUPPLICANT_VERSION      := VER_0_8_X
+HOSTAPD_VERSION             := VER_0_8_X
+WIFI_EXT_MODULE_PATH        := "/system/lib/modules/cfg80211.ko"
+WIFI_EXT_MODULE_NAME        := "cfg80211"
+WIFI_EXT_MODULE_ARG         := ""
+WIFI_DRIVER_MODULE_PATH     := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME     := "wlan"
+WIFI_DRIVER_MODULE_ARG      := ""
+WIFI_TEST_INTERFACE         := "sta"
+WIFI_DRIVER_FW_PATH_STA     := "sta"
+WIFI_DRIVER_FW_PATH_AP      := "ap"
+WIFI_DRIVER_FW_PATH_P2P     := "p2p"
 
 # Assert
 TARGET_OTA_ASSERT_DEVICE := normandy,msm8625

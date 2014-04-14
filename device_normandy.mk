@@ -161,7 +161,6 @@ PRODUCT_PACKAGES += \
     init.qcom.coex.sh \
     init.qcom.fm.sh \
     init.qcom.sdio.sh \
-    init.qcom.wifi.sh \
     init.qcom.post_fs.sh \
     init.qcom.composition_type.sh \
     init.target.8x25.sh \
@@ -177,7 +176,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     telephony.lteOnGsmDevice=0 \
-    persist.sys.usb.config=mtp,adb
+    persist.multisim.config=dsds \
+    persist.sys.usb.config=mtp,adb \
+    wlan.driver.ath=1
 
 # QC Perf
 PRODUCT_PROPERTY_OVERRIDES += \
