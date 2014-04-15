@@ -98,7 +98,8 @@ PRODUCT_PACKAGES += \
     ft5x06_ts.kl \
     surf_keypad.kl \
     7k_handset.kl \
-    7x27a_kp.kl
+    7x27a_kp.kl \
+    ft6306.kl
 
 # Filesystem management tools
 PRODUCT_PACKAGES += \

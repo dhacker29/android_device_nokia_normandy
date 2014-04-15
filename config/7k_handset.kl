@@ -1,4 +1,4 @@
-# Copyright (c) 2011, The Linux Foundation. All rights reserved.
+# Copyright (c) 2011-2012, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -25,5 +25,6 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 key 226   HEADSETHOOK       WAKE
-key 116   POWER             WAKE
 key 107   POWER             WAKE
+key 163   MEDIA_NEXT        WAKE
+key 165   MEDIA_PREVIOUS    WAKE
