@@ -115,7 +115,7 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm7x27a \
+    gps.default \
     libgps.utils \
     libloc_adapter \
     libloc_eng \
