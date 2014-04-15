@@ -61,8 +61,8 @@ PRODUCT_COPY_FILES += \
 
 # Media
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/media/media_profiles.xml:system/etc/media_profiles.xml \
     $(LOCAL_PATH)/media/media_codecs_7627a.xml:system/etc/media_codecs.xml
-    #$(LOCAL_PATH)/media/media_profiles_7627a.xml:system/etc/media_profiles.xml
 
 # Audio
 PRODUCT_PACKAGES += \
