@@ -157,7 +157,8 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc \
     init.target.rc \
     init.qcom.ril.path.sh \
-    rmt_storage_recovery
+    rmt_storage_recovery \
+    init.recovery.qcom.rc
 
 # Init scripts
 PRODUCT_PACKAGES += \
@@ -176,8 +177,12 @@ PRODUCT_PACKAGES += \
     init.qcom.sd_hot_plug.sh \
     thermald-8x25-msm1-pmic_therm.conf \
     thermald-8x25-msm2-msm_therm.conf \
-    thermald-8x25-msm2-pmic_therm.conf \
-    vold.fstab
+    thermald-8x25-msm2-pmic_therm.conf
+
+# Wifi
+PRODUCT_PACKAGES += \
+    p2p_supplicant_overlay.conf \
+    wpa_supplicant_overlay.conf
 
 # Common properties
 PRODUCT_PROPERTY_OVERRIDES += \
