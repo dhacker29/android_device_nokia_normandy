@@ -174,7 +174,6 @@ BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TW_BOARD_CUSTOM_GRAPHICS := ../../../device/nokia/normandy/recovery/tw_graphics.c
-TW_TARGET_USES_QCOM_BSP := true
 DEVICE_RESOLUTION := 480x800
 TW_FLASH_FROM_STORAGE := true
 TW_INTERNAL_STORAGE_PATH := "/sdcard1"
