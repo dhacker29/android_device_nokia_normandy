@@ -88,9 +88,11 @@ service sd_hot_plug /system/bin/sh /system/etc/init.qcom.sd_hot_plug.sh
     oneshot
 
 on boot
-   start qcamerasvr
-   start gpu_dcvsd
-   start psensorCal
+    start qcamerasvr
+    start gpu_dcvsd
+    start psensorCal
+    # zRAM
+    write /proc/sys/vm/page-cluster 0
 
     ###CSVT #######
     chmod 0777 /dev/smd11
@@ -187,6 +189,8 @@ service psensorCal /system/bin/psensorCal
 on fs
     # Failure to mount any partition in fstab file results in failure to launch late-start class.
     mount_all fstab.qcom
+    # zRAM
+    swapon_all /fstab.atlas40
 
 # 2013-09-11  Li Tao  fix Normandy_P003603, touch pannel testAllFilesInSysAreNotWritable
 on property:persist.radio.tp.upgrade=1
