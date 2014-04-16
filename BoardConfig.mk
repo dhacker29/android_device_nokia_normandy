@@ -86,7 +86,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.emmc=true loglevel=1 vmalloc=200M
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1 vmalloc=200M androidboot.selinux=permissive
 ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_EGL_CFG := device/nokia/normandy/config/egl.cfg
 
@@ -170,7 +170,6 @@ TARGET_OTA_ASSERT_DEVICE := normandy,msm8625
 
 # Recovery
 TARGET_RECOVERY_FSTAB := device/nokia/normandy/rootdir/etc/fstab.qcom
-COMMON_GLOBAL_CFLAGS += -DRECOVERY_CANT_USE_CONFIG_EXT4_FS_XATTR
 BOARD_UMS_LUNFILE := "/sys/class/android_usb/android0/f_mass_storage/lun%d/file"
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
