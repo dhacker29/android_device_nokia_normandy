@@ -18,6 +18,8 @@
 
 #include <stdint.h>
 #include <sys/types.h>
+#include <cutils/config_utils.h>
+#include <cutils/misc.h>
 #include <utils/Timers.h>
 #include <utils/Errors.h>
 #include <utils/KeyedVector.h>
@@ -41,25 +43,32 @@ public:
 
         virtual ~AudioPolicyManager() {}
 
-        virtual status_t setDeviceConnectionState(AudioSystem::audio_devices device,
+        virtual audio_io_handle_t getOutput(AudioSystem::stream_type stream,
+                                            uint32_t samplingRate = 0,
+                                            uint32_t format = AudioSystem::FORMAT_DEFAULT,
+                                            uint32_t channels = 0,
+                                            AudioSystem::output_flags flags =
+                                                    AudioSystem::OUTPUT_FLAG_INDIRECT,
+                                            const audio_offload_info_t *offloadInfo = NULL);
+
+        virtual void releaseOutput(audio_io_handle_t output);
+
+        virtual status_t setDeviceConnectionState(audio_devices_t device,
                                                           AudioSystem::device_connection_state state,
                                                           const char *device_address);
 
         virtual void setPhoneState(int state);
 
-        // returns true if give output is direct output
-        bool isDirectOutput(audio_io_handle_t output);
-
         virtual audio_devices_t getDeviceForVolume(audio_devices_t device);
 
-        virtual audio_devices_t getDeviceForStrategy(routing_strategy strategy, bool fromCache = true);
         virtual uint32_t  checkDeviceMuteStrategies(AudioOutputDescriptor *outputDesc,
                                             audio_devices_t prevDevice,
                                             uint32_t delayMs);
         virtual void setForceUse(AudioSystem::force_use usage, AudioSystem::forced_config config);
 
-        virtual void handleNotificationRoutingForStream(AudioSystem::stream_type stream);
 protected:
+
+        virtual audio_devices_t getDeviceForStrategy(routing_strategy strategy, bool fromCache = true);
         fm_modes fmMode;
         bool pendingForceNone;
 
@@ -67,6 +76,31 @@ protected:
         // true is current platform supports suplication of notifications and ringtones over A2DP output
         //virtual bool a2dpUsedForSonification() const { return true; }
 #endif
+
+        // when a device is connected, checks if an open output can be routed
+        // to this device. If none is open, tries to open one of the available outputs.
+        // Returns an output suitable to this device or 0.
+        // when a device is disconnected, checks if an output is not used any more and
+        // returns its handle if any.
+        // transfers the audio tracks and effects from one output thread to another accordingly.
+        status_t checkOutputsForDevice(audio_devices_t device,
+                                       AudioSystem::device_connection_state state,
+                                       SortedVector<audio_io_handle_t>& outputs);
+
+        virtual AudioPolicyManagerBase::IOProfile* getProfileForDirectOutput(
+                                                     audio_devices_t device,
+                                                     uint32_t samplingRate,
+                                                     uint32_t format,
+                                                     uint32_t channelMask,
+                                                     audio_output_flags_t flags);
+
+
+        bool    isCompatibleProfile(AudioPolicyManagerBase::IOProfile *profile,
+                                    audio_devices_t device,
+                                    uint32_t samplingRate,
+                                    uint32_t format,
+                                    uint32_t channelMask,
+                                    audio_output_flags_t flags);
         // check that volume change is permitted, compute and send new volume to audio hardware
         status_t checkAndSetVolume(int stream, int index, audio_io_handle_t output, audio_devices_t device, int delayMs = 0, bool force = false);
         status_t stopInput(audio_io_handle_t input);
@@ -85,5 +119,10 @@ protected:
                                int session = 0);
         virtual void setFmMode(fm_modes mode) {  fmMode = mode; }
         virtual fm_modes getFMMode() const {  return fmMode; }
+
+private:
+        // updates device caching and output for streams that can influence the
+        //    routing of notifications
+        void handleNotificationRoutingForStream(AudioSystem::stream_type stream);
 };
 };
