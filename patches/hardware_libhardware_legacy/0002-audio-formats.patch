@@ -1,0 +1,33 @@
+From ea13176e3431c114f1da53b1f301758db9eb73df Mon Sep 17 00:00:00 2001
+From: sakindia123 <sa6915@gmail.com>
+Date: Sat, 6 Jul 2013 06:04:27 +0100
+Subject: [PATCH] audio_policy: Add EVRCB & EVRCWB formats
+
+  * needed for msm7x27a and msm8660
+  * needed to compile audio hal from caf
+
+Change-Id: Ibac3cf0b58de0bb6ee621e0498322318464492a0
+---
+ include/hardware_legacy/AudioSystemLegacy.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/include/hardware_legacy/AudioSystemLegacy.h b/include/hardware_legacy/AudioSystemLegacy.h
+index 6296b8b..a3241be 100644
+--- a/include/hardware_legacy/AudioSystemLegacy.h
++++ b/include/hardware_legacy/AudioSystemLegacy.h
+@@ -133,6 +133,12 @@ public:
+         HE_AAC_V1           = 0x05000000,
+         HE_AAC_V2           = 0x06000000,
+         VORBIS              = 0x07000000,
++#ifdef QCOM_HARDWARE
++        EVRC                = 0x08000000,
++        QCELP               = 0x09000000,
++        EVRCB               = 0x10000000,
++        EVRCWB              = 0x11000000,
++#endif
+         MAIN_FORMAT_MASK    = 0xFF000000,
+         SUB_FORMAT_MASK     = 0x00FFFFFF,
+         // Aliases
+-- 
+1.8.1.2
+

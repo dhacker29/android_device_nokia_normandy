@@ -1,0 +1,25 @@
+From 132e118952e13399bff5639856a3ff432423c9be Mon Sep 17 00:00:00 2001
+From: Kyle Harrison <khwebmail@gmail.com>
+Date: Sun, 12 Jan 2014 14:15:16 +0000
+Subject: [PATCH] [PATCH] support legacy qcom audio variant
+
+---
+ core/qcom_target.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/core/qcom_target.mk b/core/qcom_target.mk
+index e65a6fc..08680b0 100644
+--- a/core/qcom_target.mk
++++ b/core/qcom_target.mk
+@@ -12,7 +12,7 @@ ifeq ($(BOARD_USES_QCOM_HARDWARE),true)
+     endif
+ 
+     # Enable DirectTrack for legacy targets
+-    ifneq ($(filter caf bfam,$(TARGET_QCOM_AUDIO_VARIANT)),)
++    ifneq ($(filter caf bfam legacy,$(TARGET_QCOM_AUDIO_VARIANT)),)
+         ifeq ($(BOARD_USES_LEGACY_ALSA_AUDIO),true)
+             TARGET_GLOBAL_CFLAGS += -DQCOM_DIRECTTRACK
+             TARGET_GLOBAL_CPPFLAGS += -DQCOM_DIRECTTRACK
+-- 
+1.8.5.2
+
