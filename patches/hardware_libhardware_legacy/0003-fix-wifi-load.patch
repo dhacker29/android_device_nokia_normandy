@@ -1,0 +1,26 @@
+From bfb78eadc922a44720c48c709e92ef790a214637 Mon Sep 17 00:00:00 2001
+From: dhacker29 <dhackerdvm@gmail.com>
+Date: Mon, 14 Apr 2014 03:31:44 -0400
+Subject: Fix wifi load
+
+Change-Id: I96b1a5cc0af8417e8497a47ddb5e2db6e0968992
+---
+ wifi/wifi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/wifi/wifi.c b/wifi/wifi.c
+index 656659f..e4391b9 100644
+--- a/wifi/wifi.c
++++ b/wifi/wifi.c
+@@ -99,7 +99,7 @@ static const char EXT_MODULE_PATH[] = WIFI_EXT_MODULE_PATH;
+ #define WIFI_DRIVER_FW_PATH_PARAM	"/sys/module/wlan/parameters/fwpath"
+ #endif
+ 
+-static const char IFACE_DIR[]           = "/data/system/wpa_supplicant";
++static const char IFACE_DIR[]           = "";
+ #ifdef WIFI_DRIVER_MODULE_PATH
+ static const char DRIVER_MODULE_NAME[]  = WIFI_DRIVER_MODULE_NAME;
+ static const char DRIVER_MODULE_TAG[]   = WIFI_DRIVER_MODULE_NAME " ";
+-- 
+1.8.3.2
+
