@@ -32,7 +32,7 @@
 baseband=`getprop ro.baseband`
 multirild=`getprop ro.multi.rild`
 netmgr=`getprop ro.use_data_netmgrd`
-dsds=`getprop persist.multisim.config`
+dsds=`getprop persist.radio.multisim.config`
 
 case "$baseband" in
     "apq")

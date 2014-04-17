@@ -23,6 +23,8 @@
 
 #define CONTROL_PERMS_APPEND \
     { "fm_dl", AID_FM_RADIO, AID_FM_RADIO}, \
-    { "wifi-sdio-on",AID_WIFI, 0 },
+    { "wifi-sdio-on",AID_WIFI, 0 }, \
+    { "ril-daemon1",AID_RADIO, AID_RADIO }, \
+    { "ril-daemon2",AID_RADIO, AID_RADIO },
 
 #endif /* DEVICE_PERMS_H */

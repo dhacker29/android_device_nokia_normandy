@@ -55,7 +55,6 @@ lib/libaudioeq.so
 lib/libauth.so
 lib/libcm.so
 lib/libcneapiclient.so
-lib/libcnefeatureconfig.so
 lib/libcneqmiutils.so
 lib/libcneutils.so
 -lib/libcommondefs.so
@@ -69,6 +68,7 @@ lib/libdsprofile.so
 lib/libdss.so
 lib/libdsucsd.so
 lib/libdsutils.so
+lib/libExtendedExtractor.so
 lib/libextRil.so
 lib/libgemini.so
 lib/libgps.so

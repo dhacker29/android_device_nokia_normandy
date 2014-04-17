@@ -60,8 +60,10 @@ PRODUCT_PACKAGES += \
     audio.primary.msm7x27a \
     audio_policy.conf \
     audio_policy.msm7x27a \
+    audio.r_submix.default \
     audio.usb.default \
     libaudioparameter \
+    libaudio-resampler \
     libtinyalsa \
     tinycap \
     tinymix \
@@ -116,6 +118,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     charger \
     charger_res_images \
+    libcnefeatureconfig \
     libnl_2 \
     lights.msm7x27a
 
@@ -178,7 +181,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     telephony.lteOnGsmDevice=0 \
-    persist.multisim.config=dsds \
+    persist.radio.multisim.config=dsds \
     persist.sys.usb.config=mtp,adb \
     wlan.driver.ath=1
 
