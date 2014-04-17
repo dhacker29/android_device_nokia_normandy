@@ -30,9 +30,7 @@
 # start ril-daemon only for targets on which radio is present
 #
 baseband=`getprop ro.baseband`
-multirild=`getprop ro.multi.rild`
 netmgr=`getprop ro.use_data_netmgrd`
-dsds=`getprop persist.radio.multisim.config`
 
 case "$baseband" in
     "apq")
@@ -47,13 +45,20 @@ case "$baseband" in
         "svlte2a" | "csfb" | "sglte")
         start qmiproxy
     esac
-    case "$multirild" in
-        "true")
-         case "$dsds" in
-             "true")
-             start ril-daemon1
-         esac
-    esac
+
+    multisim=`getprop persist.radio.multisim.config`
+
+    if [ "$multisim" = "dsds" ] || [ "$multisim" = "dsda" ]; then
+        stop ril-daemon
+        start ril-daemon
+        start ril-daemon1
+    elif [ "$multisim" = "tsts" ]; then
+        stop ril-daemon
+        start ril-daemon
+        start ril-daemon1
+        start ril-daemon2
+    fi
+
     case "$netmgr" in
         "true")
         start netmgrd

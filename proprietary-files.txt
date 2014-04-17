@@ -19,7 +19,6 @@ bin/qmiproxy
 bin/qmuxd
 bin/qosmgr
 bin/radish
-bin/rild
 bin/rmt_storage
 bin/sapd
 bin/subsystem_ramdump
@@ -129,7 +128,6 @@ lib/libqmi_client_qmux.so
 lib/libqmi_csvt_srvc.so
 lib/libqmiservices.so
 lib/libqueue.so
-lib/libril.so
 lib/libril-qc-1.so
 lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so

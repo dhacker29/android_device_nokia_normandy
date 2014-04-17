@@ -182,8 +182,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     telephony.lteOnGsmDevice=0 \
     persist.radio.multisim.config=dsds \
+    persist.multisim.config=dsds \
     persist.sys.usb.config=mtp,adb \
-    wlan.driver.ath=1
+    wlan.driver.ath=1 \
+    ro.config.low_ram=true
 
 # QC Perf
 PRODUCT_PROPERTY_OVERRIDES += \
