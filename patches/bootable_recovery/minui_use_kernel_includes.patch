@@ -1,0 +1,31 @@
+From 7e14f71b99fd46c7e816674a65eaef63e8be31f2 Mon Sep 17 00:00:00 2001
+From: Naseer Ahmed <naseer@codeaurora.org>
+Date: Tue, 7 Aug 2012 15:13:10 -0700
+Subject: [PATCH] minui: Use kernel includes
+
+Change-Id: Ibb170488c9aae83ed2359dc025519cfbe97f4d6d
+(cherry picked from commit 6aded8bc8952b439bd823d27e201c58dbd69e696)
+
+Conflicts:
+	minui/Android.mk
+---
+ minui/Android.mk | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/minui/Android.mk b/minui/Android.mk
+index 5362314..aead8d4 100644
+--- a/minui/Android.mk
++++ b/minui/Android.mk
+@@ -32,4 +32,9 @@ ifneq ($(BOARD_USE_CUSTOM_RECOVERY_FONT),)
+   LOCAL_CFLAGS += -DBOARD_USE_CUSTOM_RECOVERY_FONT=$(BOARD_USE_CUSTOM_RECOVERY_FONT)
+ endif
+ 
++ifeq ($(call is-vendor-board-platform,QCOM),true)
++LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
++LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
++endif
++
+ include $(BUILD_STATIC_LIBRARY)
+-- 
+1.9.1
+
