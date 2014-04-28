@@ -63,6 +63,9 @@
 #define AID_NFC           1027  /* nfc subsystem */
 #define AID_SDCARD_R      1028  /* external storage read access */
 #define AID_FM_RADIO      1029  /* FM radio */
+#define AID_AUDIT         1031  /* audit daemon */
+
+#define AID_THEMEMAN      1300  /* theme manager */
 
 #define AID_SHELL         2000  /* adb and debug shell user */
 #define AID_CACHE         2001  /* cache access */
@@ -77,8 +80,9 @@
 #define AID_NET_ADMIN     3005  /* can configure interfaces and routing tables. */
 #define AID_NET_BW_STATS  3006  /* read bandwidth statistics */
 #define AID_NET_BW_ACCT   3007  /* change bandwidth statistics accounting */
-#define AID_QCOM_ONCRPC   3008  /* can read/write /dev/oncrpc files */
-#define AID_QCOM_DIAG     3009  /* can read/write /dev/diag */
+#define AID_NET_BT_STACK  3008  /* bluetooth: access config files */
+#define AID_QCOM_ONCRPC   3009  /* can read/write /dev/oncrpc files */
+#define AID_QCOM_DIAG     3010  /* can read/write /dev/diag */
 
 #if defined(MOTOROLA_UIDS)
 #define AID_MOT_OSH       5000  /* OSH */
@@ -105,6 +109,9 @@
 #define AID_ISOLATED_END   99999 /* end of uids for fully isolated sandboxed processes */
 
 #define AID_USER        100000  /* offset for uid ranges for each user */
+
+#define AID_SHARED_GID_START 50000 /* start of gids for apps in each user to share */
+#define AID_SHARED_GID_END   59999 /* start of gids for apps in each user to share */
 
 #if !defined(EXCLUDE_FS_CONFIG_STRUCTURES)
 struct android_id_info {
@@ -138,6 +145,7 @@ static const struct android_id_info android_ids[] = {
     { "diag",      AID_DIAG, },
     { "net_bt_admin", AID_NET_BT_ADMIN, },
     { "net_bt",    AID_NET_BT, },
+    { "net_bt_stack",    AID_NET_BT_STACK, },
     { "sdcard_r",  AID_SDCARD_R, },
     { "sdcard_rw", AID_SDCARD_RW, },
     { "media_rw",  AID_MEDIA_RW, },
@@ -171,6 +179,8 @@ static const struct android_id_info android_ids[] = {
     { "misc",      AID_MISC, },
     { "fm_radio",  AID_FM_RADIO, },
     { "nobody",    AID_NOBODY, },
+    { "theme_man", AID_THEMEMAN },
+    { "audit",      AID_AUDIT, },
 };
 
 #define android_id_count \
