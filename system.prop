@@ -115,8 +115,8 @@ ro.config.ehrpd=true
 ro.qualcomm.cabl=1
 
 # System props for telephony
-# System prop to turn on CdmaLTEPhone always
-telephony.lteOnCdmaDevice=1
+# System prop to turn off CdmaLTEPhone always
+telephony.lteOnCdmaDevice=0
 
 #
 # System prop for sending transmit power request to RIL during WiFi hotspot on/off
